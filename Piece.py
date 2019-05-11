@@ -3,19 +3,19 @@ import pygame
 width = 500
 height = 500
 
-b_bishop = pygame.image.load("imgs\\b_bishop.png")
-b_king = pygame.image.load("imgs\\b_king.png")
-b_knight = pygame.image.load("imgs\\b_knight.png")
-b_pawn = pygame.image.load("imgs\\b_pawn.png")
-b_queen = pygame.image.load("imgs\\b_queen.png")
-b_rook = pygame.image.load("imgs\\b_rook.png")
+b_bishop = pygame.image.load("img\\b_bishop.png")
+b_king = pygame.image.load("img\\b_king.png")
+b_knight = pygame.image.load("img\\b_knight.png")
+b_pawn = pygame.image.load("img\\b_pawn.png")
+b_queen = pygame.image.load("img\\b_queen.png")
+b_rook = pygame.image.load("img\\b_rook.png")
 
-w_bishop = pygame.image.load("imgs\\w_bishop.png")
-w_king = pygame.image.load("imgs\\w_king.png")
-w_knight = pygame.image.load("imgs\\w_knight.png")
-w_pawn = pygame.image.load("imgs\\w_pawn.png")
-w_queen = pygame.image.load("imgs\\w_queen.png")
-w_rook = pygame.image.load("imgs\\w_rook.png")
+w_bishop = pygame.image.load("img\\w_bishop.png")
+w_king = pygame.image.load("img\\w_king.png")
+w_knight = pygame.image.load("img\\w_knight.png")
+w_pawn = pygame.image.load("img\\w_pawn.png")
+w_queen = pygame.image.load("img\\w_queen.png")
+w_rook = pygame.image.load("img\\w_rook.png")
 
 
 class Piece:
@@ -27,7 +27,14 @@ class Piece:
 
     def move(self,pos,board):
         if pos in self.validMoves(board):
+            x = self.pos[0]
+            y = self.pos[1]
+            board.addBlank([x, y])
             self.pos = pos
+            board.addPiece(self)
+            return True
+        else:
+            return False
 
     def validMoves(self, board):
         pass
@@ -36,24 +43,28 @@ class Piece:
         window.blit(self.img,self.getCoords(self.pos))
 
     def getCoords(self,pos):
-        x = width/8 * pos[0]
+        x = width/8 * (pos[0])
         y = height - height/8 * (1+pos[1])
         return x,y
+
+    def getPos(self):
+        return self.pos[0],self.pos[1]
 
     def checkDiagonal(self, board):
         moves = []
         x = self.pos[0]
         y = self.pos[1]
-        ran = range(0, 8)
+        ran = range(8)
 
         # UP RIGHT
         tempx = x + 1
         tempy = y + 1
 
         while tempx in ran and tempy in ran:
-            square = board.getSquare([tempx, tempy])
-            if square == 0 or square.getColor == self.color:
+            if self.isValid(self.color, [tempx, tempy], board):
                 moves.append([tempx, tempy])
+                if board.getSquare([tempx, tempy]) != 0:  # Reached an eatable piece
+                    break
                 tempx += 1
                 tempy += 1
             else:
@@ -65,36 +76,104 @@ class Piece:
         tempy = y - 1
 
         while tempx in ran and tempy in ran:
-            square = board.getSquare([tempx, tempy])
-            if square == 0 or square.getColor == self.color:
+            if self.isValid(self.color, [tempx, tempy], board):
                 moves.append([tempx, tempy])
+                if board.getSquare([tempx, tempy]) != 0:  # Reached an eatable piece
+                    break
                 tempx += 1
                 tempy -= 1
-
+            else:
+                break
         # DOWN LEFT
 
         tempx = x - 1
         tempy = y - 1
 
         while tempx in ran and tempy in ran:
-            square = board.getSquare([tempx, tempy])
-            if square == 0 or square.getColor == self.color:
+            if self.isValid(self.color, [tempx, tempy], board):
                 moves.append([tempx, tempy])
+                if board.getSquare([tempx, tempy]) != 0:  # Reached an eatable piece
+                    break
                 tempx -= 1
                 tempy -= 1
-
+            else:
+                break
         # UP LEFT
 
         tempx = x - 1
         tempy = y + 1
 
         while tempx in ran and tempy in ran:
-            square = board.getSquare([tempx, tempy])
-            if square == 0 or square.getColor == self.color:
+            if self.isValid(self.color, [tempx, tempy], board):
                 moves.append([tempx, tempy])
+                if board.getSquare([tempx, tempy]) != 0:  # Reached an eatable piece
+                    break
                 tempx -= 1
                 tempy += 1
+            else:
+                break
         return moves
+
+    def checkPerpendicular(self, board):
+        moves = []
+        x = self.pos[0]
+        y = self.pos[1]
+
+        # Check left
+        for tx in range(self.pos[0]-1, -1, -1):
+            if self.isValid(self.color, [tx, y], board):
+                square = board.getSquare([tx, y])
+                moves.append([tx, y])
+                if square != 0:  # reached an eatable piece
+                    break
+            else:
+                break
+
+        # Check right
+
+        for tx in range(self.pos[0]+1, 8, 1):
+            if self.isValid(self.color, [tx, y], board):
+                square = board.getSquare([tx, y])
+                moves.append([tx, y])
+                if square != 0:  # reached an eatable piece
+                    break
+            else:
+                break
+
+        # Check up
+        for ty in range(self.pos[1]+1, 8, 1):
+            if self.isValid(self.color, [x, ty], board):
+                square = board.getSquare([x, ty])
+                moves.append([x, ty])
+                if square != 0:  # reached an eatable piece
+                    break
+            else:
+                break
+
+        # Check up
+        for ty in range(self.pos[1]-1, -1, -1):
+            if self.isValid(self.color, [x, ty], board):
+                square = board.getSquare([x, ty])
+                moves.append([x, ty])
+                if square != 0:  # reached an eatable piece
+                    break
+            else:
+                break
+
+        return moves
+
+
+    def getColor(self):
+        return self.color
+
+    def isValid(self, color, move, board):
+        if not (move[0] in range(0,8) and move[1] in range(0,8)):
+            return False
+        square = board.getSquare(move)
+        if square == 0 or not square.getColor() == color:
+            return True
+        else:
+            return False
 
 
 class Bishop (Piece):
@@ -107,18 +186,187 @@ class Bishop (Piece):
             self.img = w_bishop
 
     def __str__(self):
-
-        if self.color == "b":
-            return "bB"
-        else:
-            return "wB"
+        return self.color + "B"
 
     def validMoves(self, board):
         return self.checkDiagonal(board)
 
 
+class King (Piece):
+
+    def __init__(self, pos, color):
+        Piece.__init__(self, pos, color)
+        if color == "b":
+            self.img = b_king
+        else:
+            self.img = w_king
+
+    def __str__(self):
+        return self.color + "K"
+
+    def validMoves(self, board):
+        moves = []
+        validmoves = []
+        x = self.pos[0]
+        y = self.pos[1]
+        for tx in range(x-1, x+2):
+            if tx in range(0, 7):
+                for ty in range(y-1, y+2):
+                    if ty in range(0, 7):
+                        if not (tx == x and ty == y):
+                            moves.append([tx, ty])
+        for move in moves:
+            if self.isValid(self.color, move, board):
+                validmoves.append(move)
+        return validmoves
 
 
+class Knight (Piece):
+
+    def __init__(self, pos, color):
+        Piece.__init__(self, pos, color)
+        if color == "b":
+            self.img = b_knight
+        else:
+            self.img = w_knight
+
+    def __str__(self):
+        return self.color + "N"
+
+    def validMoves(self, board):
+        moves = []
+        x = self.pos[0]
+        y = self.pos[1]
+
+        # Far left and far right moves
+        for ty in [y-1, y+1]:
+            for tx in [x+2, x-2]:
+                if self.isValid(self.getColor(), [tx, ty], board):
+                    moves.append([tx, ty])
+        # top right and top left moves
+        for ty in [y-2, y+2]:
+            for tx in [x+1, x-1]:
+                if self.isValid(self.getColor(), [tx, ty], board):
+                    moves.append([tx, ty])
+        return moves
 
 
+class Pawn (Piece):
 
+    def __init__(self, pos, color):
+        Piece.__init__(self, pos, color)
+        self.passant = False # Flag for en passant moves against the piece
+        if color == "b":
+            self.img = b_pawn
+        else:
+            self.img = w_pawn
+
+    def __str__(self):
+        return self.color + "P"
+
+    def getPassant(self):
+        return self.passant
+
+    def clearPassant(self):
+        self.passant = False
+
+
+    def move(self,pos,board):
+        if pos in self.validMoves(board):
+            x = self.pos[0]
+            y = self.pos[1]
+            if abs(y-pos[1]) == 2:
+                self.passant = True
+            board.addBlank([x, y])
+            self.pos = pos
+            board.addPiece(self)
+            return True
+        else:
+            return False
+
+    def isValid(self, color, move, board):
+        if not (move[0] in range(0,8) and move[1] in range(0,8)):
+            return False
+        square = board.getSquare(move)
+        x = move[0]
+
+        if x == self.pos[0]:
+            if square == 0:
+                return True
+        else:
+            if square != 0 and square.getColor() != self.color:
+                return True
+        return False
+
+    def validMoves(self, board):
+        moves = []
+        validmoves = []
+        x = self.pos[0]
+        y = self.pos[1]
+        mod = 1 # 1 for white, -1 for black
+        if self.getColor() == "b":
+            mod = -1
+        if (y == 1 and mod == 1) or (y == 6 and mod == -1):
+                moves.append([x, y+(mod * 2)])
+        for tx in range(x-1,x+2,1):
+            moves.append([tx, y + mod])
+        for move in moves:
+            if self.isValid(self.color, move, board):
+                validmoves.append(move)
+        # Check for en passant captures
+        if x > 0:
+            square = board.getSquare([x - 1, y])
+            if self.checkPassant(square):
+                if board.getSquare([x - 1, y + mod]) == 0:
+                    validmoves.append([x - 1, y + mod])
+        if x < 7:
+            square = board.getSquare([x + 1, y])
+            if self.checkPassant(square):
+                if board.getSquare([x + 1, y + mod]) == 0:
+                    validmoves.append([x + 1, y + mod])
+
+        return validmoves
+
+    def checkPassant(self,square):
+        if square == 0:
+            return False
+        if self.color == "w":
+            color = "b"
+        else:
+            color = "w"
+        if str(square) == color + "P":
+            if square.getPassant():
+                return True
+
+
+class Queen (Piece):
+    def __init__(self, pos, color):
+        Piece.__init__(self, pos, color)
+        if color == "b":
+            self.img = b_queen
+        else:
+            self.img = w_queen
+
+    def __str__(self):
+        return self.color + "Q"
+
+    def validMoves(self, board):
+        moves = self.checkDiagonal(board)
+        for move in self.checkPerpendicular(board):
+            moves.append(move)
+        return moves
+
+class Rook (Piece):
+    def __init__(self, pos, color):
+        Piece.__init__(self, pos, color)
+        if color == "b":
+            self.img = b_rook
+        else:
+            self.img = w_rook
+
+    def __str__(self):
+        return self.color + "R"
+
+    def validMoves(self, board):
+        moves = self.checkPerpendicular(board)
+        return moves
