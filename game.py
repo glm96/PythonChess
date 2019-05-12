@@ -1,15 +1,14 @@
 from Board import Board
 from Piece import *
-import re
 
 boardimg = pygame.image.load("img\\board.png")
 windowicon = pygame.image.load("img\\icon.png")
 
 width = 500
 height = 500
-white = (255,255,255)
+white = (255, 255, 255)
 red = pygame.Color.r
-origin = (0,0)
+origin = (0, 0)
 clicked = False
 clickedPiece = 0
 lastMoved = 0
@@ -21,12 +20,12 @@ board = Board()
 def main():
 
     pygame.init()
-    screen = pygame.display.set_mode((width,height))
+    screen = pygame.display.set_mode((width, height))
     pygame.display.set_caption("PyChess")
     pygame.display.set_icon(windowicon)
     clock = pygame.time.Clock()
     done = False
-    board.loadBoard()
+    board.load_board()
 
     while not done:
 
@@ -34,23 +33,23 @@ def main():
             if event.type == pygame.QUIT:
                 done = True
             if event.type == pygame.MOUSEBUTTONUP:
-                onClickBoard(event)
+                on_click_board(event)
         screen.fill(white)
         screen.blit(boardimg, origin)
         board.update(screen)
-        if clickedPiece != 0:
-            for move in clickedPiece.validMoves(board):
-                highlightSquare(move, screen)
+        if isinstance(clickedPiece, Piece):
+            for move in clickedPiece.valid_moves(board):
+                highlight_square(move, screen)
         pygame.display.flip()
         clock.tick(50)
 
 
-def formatPos(pos):
+def format_pos(pos):
     x = chr(ord('A')+pos[0])
     return x + str(pos[1])
 
 
-def onClickBoard(event):
+def on_click_board(event):
     global clicked, clickedPiece, wturn, lastMoved
     side = width / 8
     x = int(event.pos[0] / side)
@@ -59,32 +58,31 @@ def onClickBoard(event):
         turn = "w"
     else:
         turn = "b"
-    square = board.getSquare([x, y])
+    square = board.get_square([x, y])
     if not clicked:
         if square != 0:
-            if square.getColor() == turn:
+            if square.get_color() == turn:
                 clickedPiece = square
                 clicked = True
     else:
-        if clickedPiece.move([x, y], board):
-            wturn = not wturn
-            clearPassants()
-            lastMoved = clickedPiece
+        if [x, y] in clickedPiece.valid_moves(board):
+            if clickedPiece.move([x, y], board):
+                wturn = not wturn
+                clear_passants()
+                lastMoved = clickedPiece
         clicked = False
         clickedPiece = 0
 
 
-def highlightSquare(pos, screen):
+def highlight_square(pos, screen):
     x = int(width / 8 * pos[0] + width/16)
     y = int(height - height / 8 * (1 + pos[1]) + height/16)
-    pygame.draw.circle(screen, (255,0,0), [x, y],  8, 0)
+    pygame.draw.circle(screen, (255, 0, 0), [x, y],  8, 0)
 
 
-def clearPassants():
-    if lastMoved != 0:
-        regex = ".P"
-        if re.search(regex, str(lastMoved)):
-            lastMoved.clearPassant()
+def clear_passants():
+    if isinstance(lastMoved, Pawn):
+        lastMoved.clear_passant()
 
 
 main()

@@ -20,8 +20,6 @@ w_queen = pygame.image.load("img\\w_queen.png")
 w_rook = pygame.image.load("img\\w_rook.png")
 
 
-
-
 class Piece:
 
     def __init__(self, pos, color):
@@ -29,145 +27,145 @@ class Piece:
         self.color = color
         self.img = 0
 
-    def setPos(self, pos):
+    def set_pos(self, pos):
         self.pos = pos
 
-    def move(self,pos,board):
-        if pos in self.validMoves(board):
-            x = self.pos[0]
-            y = self.pos[1]
-            board.addBlank([x, y])
+    def move(self, pos, board):
+        if pos in self.valid_moves(board):
+            x, y = self.get_pos()
+            board.add_blank([x, y])
             self.pos = pos
-            board.addPiece(self)
+            board.add_piece(self)
             return True
         else:
             return False
 
-    def validMoves(self, board):
+    def valid_moves(self, board):
         pass
 
-    def draw(self,window):
-        window.blit(self.img,self.getCoords(self.pos))
+    def draw(self, window):
+        window.blit(self.img, self.get_coords(self.pos))
 
-    def getCoords(self,pos):
+    @staticmethod
+    def get_coords(pos):
         x = width/8 * (pos[0])
         y = height - height/8 * (1+pos[1])
-        return x,y
+        return x, y
 
-    def getPos(self):
-        return self.pos[0],self.pos[1]
+    def get_pos(self):
+        return self.pos[0], self.pos[1]
 
-    def checkDiagonal(self, board):
+    def check_diagonal(self, board):
         moves = []
-        x = self.pos[0]
-        y = self.pos[1]
+        x, y = self.get_pos()
         ran = range(8)
 
         # UP RIGHT
-        tempx = x + 1
-        tempy = y + 1
+        temp_x = x + 1
+        temp_y = y + 1
 
-        while tempx in ran and tempy in ran:
-            if self.isValid(self.color, [tempx, tempy], board):
-                moves.append([tempx, tempy])
-                if board.getSquare([tempx, tempy]) != 0:  # Reached a piece
-                    break
-            tempx += 1
-            tempy += 1
+        while temp_x in ran and temp_y in ran:
+            if self.is_valid(self.color, [temp_x, temp_y], board):
+                moves.append([temp_x, temp_y])
+            square = board.get_square([temp_x, temp_y])
+            if isinstance(square, Piece):  # Reached a piece
+                break
+            temp_x += 1
+            temp_y += 1
 
         # DOWN RIGHT
 
-        tempx = x + 1
-        tempy = y - 1
+        temp_x = x + 1
+        temp_y = y - 1
 
-        while tempx in ran and tempy in ran:
-            if self.isValid(self.color, [tempx, tempy], board):
-                moves.append([tempx, tempy])
-                if board.getSquare([tempx, tempy]) != 0:  # Reached a piece
-                    break
-            tempx += 1
-            tempy -= 1
+        while temp_x in ran and temp_y in ran:
+            if self.is_valid(self.color, [temp_x, temp_y], board):
+                moves.append([temp_x, temp_y])
+            square = board.get_square([temp_x, temp_y])
+            if isinstance(square, Piece):  # Reached a piece
+                break
+            temp_x += 1
+            temp_y -= 1
         # DOWN LEFT
 
-        tempx = x - 1
-        tempy = y - 1
+        temp_x = x - 1
+        temp_y = y - 1
 
-        while tempx in ran and tempy in ran:
-            if self.isValid(self.color, [tempx, tempy], board):
-                moves.append([tempx, tempy])
-                if board.getSquare([tempx, tempy]) != 0:  # Reached a piece
-                    break
-            tempx -= 1
-            tempy -= 1
+        while temp_x in ran and temp_y in ran:
+            if self.is_valid(self.color, [temp_x, temp_y], board):
+                moves.append([temp_x, temp_y])
+            square = board.get_square([temp_x, temp_y])
+            if isinstance(square, Piece):  # Reached a piece
+                break
+            temp_x -= 1
+            temp_y -= 1
         # UP LEFT
 
-        tempx = x - 1
-        tempy = y + 1
+        temp_x = x - 1
+        temp_y = y + 1
 
-        while tempx in ran and tempy in ran:
-            if self.isValid(self.color, [tempx, tempy], board):
-                moves.append([tempx, tempy])
-                if board.getSquare([tempx, tempy]) != 0:  # Reached a piece
-                    break
-            tempx -= 1
-            tempy += 1
+        while temp_x in ran and temp_y in ran:
+            if self.is_valid(self.color, [temp_x, temp_y], board):
+                moves.append([temp_x, temp_y])
+            square = board.get_square([temp_x, temp_y])
+            if isinstance(square, Piece):  # Reached a piece
+                break
+            temp_x -= 1
+            temp_y += 1
         return moves
 
-    def checkPerpendicular(self, board):
+    def check_perpendicular(self, board):
         moves = []
-        x = self.pos[0]
-        y = self.pos[1]
+        x, y = self.get_pos()
 
         # Check left
         for tx in range(self.pos[0]-1, -1, -1):
-            if self.isValid(self.color, [tx, y], board):
-                square = board.getSquare([tx, y])
+            if self.is_valid(self.color, [tx, y], board):
                 moves.append([tx, y])
-                if square != 0:  # reached a piece
-                    break
+            square = board.get_square([tx, y])
+            if isinstance(square, Piece):  # reached a piece
+                break
 
         # Check right
 
         for tx in range(self.pos[0]+1, 8, 1):
-            if self.isValid(self.color, [tx, y], board):
-                square = board.getSquare([tx, y])
+            if self.is_valid(self.color, [tx, y], board):
                 moves.append([tx, y])
-                if square != 0:  # reached a piece
-                    break
+            square = board.get_square([tx, y])
+            if isinstance(square, Piece):  # reached a piece
+                break
         # Check up
         for ty in range(self.pos[1]+1, 8, 1):
-            if self.isValid(self.color, [x, ty], board):
-                square = board.getSquare([x, ty])
+            if self.is_valid(self.color, [x, ty], board):
                 moves.append([x, ty])
-                if square != 0:  # reached a piece
-                    break
-
+            square = board.get_square([x, ty])
+            if isinstance(square, Piece):  # reached a piece
+                break
 
         # Check up
         for ty in range(self.pos[1]-1, -1, -1):
-            if self.isValid(self.color, [x, ty], board):
-                square = board.getSquare([x, ty])
+            if self.is_valid(self.color, [x, ty], board):
                 moves.append([x, ty])
-                if square != 0:  # reached a piece
-                    break
+            square = board.get_square([x, ty])
+            if isinstance(square, Piece):  # reached a piece
+                break
 
         return moves
 
-    def getColor(self):
+    def get_color(self):
         return self.color
 
-    def isValid(self, color, move, board):
-        if not (move[0] in range(0,8) and move[1] in range(0,8)):
+    def is_valid(self, color, move, board):
+        if not (move[0] in range(0, 8) and move[1] in range(0, 8)):
             return False
-        square = board.getSquare(move)
-        if square == 0 or square.getColor() != color:
-            if board.testMove(self.pos, move):
+        square = board.get_square(move)
+        if square == 0 or square.get_color() != color:
+            if board.test_move(self.pos, move):
                 return True
 
         return False
 
-
-    def getCopy(self):
+    def get_copy(self):
         pass
 
 
@@ -183,28 +181,29 @@ class Bishop (Piece):
     def __str__(self):
         return self.color + "B"
 
-    def validMoves(self, board):
-        return self.checkDiagonal(board)
+    def valid_moves(self, board):
+        return self.check_diagonal(board)
 
-    def getCopy(self):
+    def get_copy(self):
         return Bishop(self.pos, self.color)
 
 
 class King (Piece):
 
-    def __init__(self, pos, color):
+    def __init__(self, pos, color, cast=True, checked=False):
         Piece.__init__(self, pos, color)
         if color == "b":
             self.img = b_king
         else:
             self.img = w_king
-        self.checked = False
+        self.checked = checked
+        self.castleable = cast
 
     def __str__(self):
         return self.color + "K"
 
-    def draw(self,window):
-        if self.getColor() == "w":
+    def draw(self, window):
+        if self.get_color() == "w":
             if self.checked:
                 img = w_king_checked
             else:
@@ -214,150 +213,209 @@ class King (Piece):
                 img = b_king_checked
             else:
                 img = b_king
-        window.blit(img,self.getCoords(self.pos))
+        window.blit(img, self.get_coords(self.pos))
 
-    def setCheck(self, check):
+    def move(self, pos, board):
+        x, y = self.get_pos()
+        # Check if move is castling
+        if abs(pos[0]-x) == 2:
+            if not self.castle(pos, board):  # Castling didn't go well
+                print("Error on castling logic")
+                return False
+            return True
+        else:
+            if pos in self.valid_moves(board):
+                board.add_blank([x, y])
+                self.pos = pos
+                board.add_piece(self)
+                if self.can_castle():
+                    self.flag_uncastleable()
+                return True
+            else:
+                return False
+
+    def castle(self, pos, board):
+        x, y = self.get_pos()
+        # Get the involved rook
+        if pos[0] < x:  # Left castling
+            rook_x = 0
+            new_x = pos[0]+1
+        else:  # Right castling
+            rook_x = 7
+            new_x = pos[0]-1
+        rook = board.get_square([rook_x, y])
+        if isinstance(rook, Rook) and rook.get_color() == self.get_color():  # Ensure rook is correct
+            self.flag_uncastleable()
+            board.add_blank(self.get_pos())
+            board.add_blank(rook.get_pos())
+            self.pos = pos
+            rook.set_pos([new_x, y])
+            board.add_piece(self)
+            board.add_piece(rook)
+            return True
+        return False  # Castling didn't work
+
+    def set_check(self, check):
         self.checked = check
 
-    def validMoves(self, board):
+    def valid_moves(self, board):
         moves = []
         validmoves = []
-        x = self.pos[0]
-        y = self.pos[1]
+        x, y = self.get_pos()
+
+        # Normal moves
         for tx in range(x-1, x+2):
-            if tx in range(0, 7):
+            if tx in range(0, 8):
                 for ty in range(y-1, y+2):
-                    if ty in range(0, 7):
+                    if ty in range(0, 8):
                         if not (tx == x and ty == y):
                             moves.append([tx, ty])
+
+        # Castling
+        if self.can_castle():
+            for tx in range(x-1, -1, -1):
+                square = board.get_square([tx, y])
+                if square != 0:
+                    if isinstance(square, Rook) and square.can_castle():  # Check whether it's the final square
+                        moves.append([x-2, y])
+                    else:
+                        break
+            for tx in range(x+1, 8, 1):
+                square = board.get_square([tx, y])
+                if square != 0:
+                    if isinstance(square, Rook) and square.can_castle():
+                        moves.append([x+2, y])
+                    else:
+                        break
+
         for move in moves:
-            if self.isValid(self.color, move, board):
+            if self.is_valid(self.color, move, board):
                 validmoves.append(move)
+
         return validmoves
 
-    def isChecked(self, board):
-        x = self.getPos()[0]
-        y = self.getPos()[1]
-        if self.getColor() == "w":
+    def get_checked(self):
+        return self.checked
+
+    def is_checked(self, board):
+        x, y = self.get_pos()
+        if self.get_color() == "w":
             mod = 1
         else:
             mod = -1
         # Check Bishop + Queen diagonal
-        for pos in self.checkDiagonal(board):
-            square = board.getSquare(pos)
-            if isinstance(square, (Bishop, Queen)) and square.getColor() != self.getColor():
+        for pos in self.check_diagonal(board):
+            square = board.get_square(pos)
+            if isinstance(square, (Bishop, Queen)) and square.get_color() != self.get_color():
                 return True
         # Check Rook + Queen line
-        for pos in self.checkPerpendicular(board):
-            square = board.getSquare(pos)
-            if isinstance(square, (Rook, Queen)) and square.getColor() != self.getColor():
+        for pos in self.check_perpendicular(board):
+            square = board.get_square(pos)
+            if isinstance(square, (Rook, Queen)) and square.get_color() != self.get_color():
                 return True
         # Check Knight
-        for pos in self.getKnightMoves(board):
-            square = board.getSquare(pos)
+        for pos in self.get_knight_moves(board):
+            square = board.get_square(pos)
             if isinstance(square, Knight):
-                if square.getColor() != self.getColor():
+                if square.get_color() != self.get_color():
                     return True
         # Check opposing King
-        for tx in range(x-1,x+2,1):
+        for tx in range(x-1, x+2, 1):
             if tx in range(8):
                 for ty in range(y-1, y+2, 1):
                     if ty in range(8):
-                        square = board.getSquare([x, y])
-                        if isinstance(square, King) and square.getColor() != self.getColor():
+                        square = board.get_square([x, y])
+                        if isinstance(square, King) and square.get_color() != self.get_color():
                             return True
         # Check for pawns
         for tx in [x-1, x+1]:
             if tx in range(8) and y+mod in range(8):
-                square = board.getSquare([tx, y+mod])
+                square = board.get_square([tx, y + mod])
                 if isinstance(square, Pawn):
-                    if square.getColor() != self.getColor():
+                    if square.get_color() != self.get_color():
                         return True
         return False
 
-    def getKnightMoves(self, board):
+    def get_knight_moves(self, board):
         moves = []
-        x = self.pos[0]
-        y = self.pos[1]
+        x, y = self.get_pos()
         # Far left and far right moves
         for ty in [y - 1, y + 1]:
             for tx in [x + 2, x - 2]:
-                if board.getSquare([tx, ty]) != 0:
+                if board.get_square([tx, ty]) != 0:
                     moves.append([tx, ty])
         # top right and top left moves
         for ty in [y - 2, y + 2]:
             for tx in [x + 1, x - 1]:
-                if board.getSquare([tx, ty]) != 0:
+                if board.get_square([tx, ty]) != 0:
                     moves.append([tx, ty])
         return moves
 
-    def checkDiagonal(self, board):
+    def check_diagonal(self, board):
         moves = []
-        x = self.pos[0]
-        y = self.pos[1]
+        x, y = self.get_pos()
         ran = range(8)
         # UP RIGHT
-        tempx = x + 1
-        tempy = y + 1
+        temp_x = x + 1
+        temp_y = y + 1
 
-        while tempx in ran and tempy in ran:
-            square = board.getSquare([tempx, tempy])
+        while temp_x in ran and temp_y in ran:
+            square = board.get_square([temp_x, temp_y])
             if square != 0:
-                moves.append([tempx, tempy])
+                moves.append([temp_x, temp_y])
                 break
             else:
-                tempx = tempx + 1
-                tempy = tempy + 1
+                temp_x = temp_x + 1
+                temp_y = temp_y + 1
 
         # DOWN RIGHT
 
-        tempx = x + 1
-        tempy = y - 1
+        temp_x = x + 1
+        temp_y = y - 1
 
-        while tempx in ran and tempy in ran:
-            square = board.getSquare([tempx, tempy])
+        while temp_x in ran and temp_y in ran:
+            square = board.get_square([temp_x, temp_y])
             if square != 0:
-                moves.append([tempx, tempy])
+                moves.append([temp_x, temp_y])
                 break
             else:
-                tempx = tempx + 1
-                tempy = tempy - 1
+                temp_x = temp_x + 1
+                temp_y = temp_y - 1
         # DOWN LEFT
 
-        tempx = x - 1
-        tempy = y - 1
+        temp_x = x - 1
+        temp_y = y - 1
 
-        while tempx in ran and tempy in ran:
-            square = board.getSquare([tempx, tempy])
+        while temp_x in ran and temp_y in ran:
+            square = board.get_square([temp_x, temp_y])
             if square != 0:
-                moves.append([tempx, tempy])
+                moves.append([temp_x, temp_y])
                 break
             else:
-                tempx = tempx - 1
-                tempy = tempy + 1
+                temp_x = temp_x - 1
+                temp_y = temp_y + 1
         # UP LEFT
 
-        tempx = x - 1
-        tempy = y + 1
+        temp_x = x - 1
+        temp_y = y + 1
 
-        while tempx in ran and tempy in ran:
-            square = board.getSquare([tempx, tempy])
+        while temp_x in ran and temp_y in ran:
+            square = board.get_square([temp_x, temp_y])
             if square != 0:
-                moves.append([tempx, tempy])
+                moves.append([temp_x, temp_y])
                 break
             else:
-                tempx -= 1
-                tempy += 1
+                temp_x -= 1
+                temp_y += 1
         return moves
 
-    def checkPerpendicular(self, board):
+    def check_perpendicular(self, board):
         moves = []
-        x = self.pos[0]
-        y = self.pos[1]
+        x, y = self.get_pos()
 
         # Check left
         for tx in range(self.pos[0] - 1, -1, -1):
-            square = board.getSquare([tx, y])
+            square = board.get_square([tx, y])
             if square != 0:
                 moves.append([tx, y])
                 break
@@ -365,29 +423,35 @@ class King (Piece):
         # Check right
 
         for tx in range(self.pos[0] + 1, 8, 1):
-            square = board.getSquare([tx, y])
+            square = board.get_square([tx, y])
             if square != 0:
                 moves.append([tx, y])
                 break
 
         # Check up
         for ty in range(self.pos[1] + 1, 8, 1):
-            square = board.getSquare([x, ty])
+            square = board.get_square([x, ty])
             if square != 0:
                 moves.append([x, ty])
                 break
 
         # Check up
         for ty in range(self.pos[1] - 1, -1, -1):
-            square = board.getSquare([x, ty])
+            square = board.get_square([x, ty])
             if square != 0:
                 moves.append([x, ty])
                 break
 
         return moves
 
-    def getCopy(self):
-        return King(self.pos, self.color)
+    def can_castle(self):
+        return self.castleable
+
+    def flag_uncastleable(self):
+        self.castleable = False
+
+    def get_copy(self):
+        return King(self.pos, self.color, self.can_castle(), self.get_checked())
 
 
 class Knight (Piece):
@@ -402,24 +466,23 @@ class Knight (Piece):
     def __str__(self):
         return self.color + "N"
 
-    def validMoves(self, board):
+    def valid_moves(self, board):
         moves = []
-        x = self.pos[0]
-        y = self.pos[1]
+        x, y = self.get_pos()
 
         # Far left and far right moves
         for ty in [y-1, y+1]:
             for tx in [x+2, x-2]:
-                if self.isValid(self.getColor(), [tx, ty], board):
+                if self.is_valid(self.get_color(), [tx, ty], board):
                     moves.append([tx, ty])
         # top right and top left moves
         for ty in [y-2, y+2]:
             for tx in [x+1, x-1]:
-                if self.isValid(self.getColor(), [tx, ty], board):
+                if self.is_valid(self.get_color(), [tx, ty], board):
                     moves.append([tx, ty])
         return moves
 
-    def getCopy(self):
+    def get_copy(self):
         return Knight(self.pos, self.color)
 
 
@@ -427,7 +490,7 @@ class Pawn (Piece):
 
     def __init__(self, pos, color, passant=False):
         Piece.__init__(self, pos, color)
-        self.passant = passant # Flag for en passant moves against the piece
+        self.passant = passant  # Flag for en passant moves against the piece
         if color == "b":
             self.img = b_pawn
         else:
@@ -436,71 +499,79 @@ class Pawn (Piece):
     def __str__(self):
         return self.color + "P"
 
-    def getPassant(self):
+    def get_passant(self):
         return self.passant
 
-    def clearPassant(self):
+    def clear_passant(self):
         self.passant = False
 
-    def move(self,pos,board):
-        if pos in self.validMoves(board):
-            x = self.pos[0]
-            y = self.pos[1]
-            if abs(y-pos[1]) == 2:
-                self.passant = True
-            board.addBlank([x, y])
-            self.pos = pos
-            board.addPiece(self)
-            return True
+    def move(self, pos, board):
+        if pos in self.valid_moves(board):
+            if pos[1] in [0,7]:
+                piece = Queen(pos, self.color)
+                board.add_piece(piece)
+                board.add_blank(self.pos)
+                return True
+            else:
+                x, y = self.get_pos()
+                if y != pos[1]:  # Taking a piece
+                    square = board.get_square(pos)
+                    if square == 0:  # En Passant
+                        board.add_blank([pos[0], y])
+                if abs(y-pos[1]) == 2:
+                    self.passant = True
+                board.add_blank([x, y])
+                self.pos = pos
+                board.add_piece(self)
+                return True
         else:
             return False
 
-    def isValid(self, color, move, board):
-        if not (move[0] in range(0,8) and move[1] in range(0,8)):
+    def is_valid(self, color, move, board):
+        if not (move[0] in range(0, 8) and move[1] in range(0, 8)):
             return False
-        square = board.getSquare(move)
+        square = board.get_square(move)
         x = move[0]
 
-        if x == self.pos[0]: # Taking a piece
+        if x == self.pos[0]:  # Taking a piece
             if square == 0:
-                if board.testMove(self.pos, move):
+                if board.test_move(self.pos, move):
                     return True
-        else: # Moving forwards
-            if square != 0 and square.getColor() != self.color:
-                if board.testMove(self.pos, move):
+        else:  # Moving forwards
+            if square != 0 and square.get_color() != self.color:
+                if board.test_move(self.pos, move):
                     return True
         return False
 
-    def validMoves(self, board):
+    def valid_moves(self, board):
         moves = []
         validmoves = []
-        x = self.pos[0]
-        y = self.pos[1]
-        mod = 1 # 1 for white, -1 for black
-        if self.getColor() == "b":
+        x, y = self.get_pos()
+        mod = 1  # 1 for white, -1 for black
+        if self.get_color() == "b":
             mod = -1
         if (y == 1 and mod == 1) or (y == 6 and mod == -1):
-                moves.append([x, y+(mod * 2)])
-        for tx in range(x-1,x+2,1):
+            moves.append([x, y+(mod * 2)])
+        for tx in range(x-1, x+2, 1):
             moves.append([tx, y + mod])
         for move in moves:
-            if self.isValid(self.color, move, board):
+            if self.is_valid(self.color, move, board):
                 validmoves.append(move)
         # Check for en passant captures
         if x > 0:
-            square = board.getSquare([x - 1, y])
-            if self.checkPassant(square):
-                if board.getSquare([x - 1, y + mod]) == 0:
+            square = board.get_square([x - 1, y])
+            if self.check_passant(square):
+                if board.get_square([x - 1, y + mod]) == 0:
                     validmoves.append([x - 1, y + mod])
         if x < 7:
-            square = board.getSquare([x + 1, y])
-            if self.checkPassant(square):
-                if board.getSquare([x + 1, y + mod]) == 0:
+            square = board.get_square([x + 1, y])
+            if self.check_passant(square):
+                if board.get_square([x + 1, y + mod]) == 0:
                     validmoves.append([x + 1, y + mod])
 
         return validmoves
 
-    def checkPassant(self,square):
+    def check_passant(self, square):
         if square == 0:
             return False
         if self.color == "w":
@@ -508,11 +579,11 @@ class Pawn (Piece):
         else:
             color = "w"
         if str(square) == color + "P":
-            if square.getPassant():
+            if square.get_passant():
                 return True
 
-    def getCopy(self):
-        return Pawn(self.pos, self.color, self.getPassant())
+    def get_copy(self):
+        return Pawn(self.pos, self.color, self.get_passant())
 
 
 class Queen (Piece):
@@ -526,30 +597,49 @@ class Queen (Piece):
     def __str__(self):
         return self.color + "Q"
 
-    def validMoves(self, board):
-        moves = self.checkDiagonal(board)
-        for move in self.checkPerpendicular(board):
+    def valid_moves(self, board):
+        moves = self.check_diagonal(board)
+        for move in self.check_perpendicular(board):
             moves.append(move)
         return moves
 
-    def getCopy(self):
+    def get_copy(self):
         return Queen(self.pos, self.color)
 
 
 class Rook (Piece):
-    def __init__(self, pos, color):
+    def __init__(self, pos, color, cast=True):
         Piece.__init__(self, pos, color)
         if color == "b":
             self.img = b_rook
         else:
             self.img = w_rook
+        self.castleable = cast
 
     def __str__(self):
         return self.color + "R"
 
-    def validMoves(self, board):
-        moves = self.checkPerpendicular(board)
+    def move(self, pos, board):
+        if pos in self.valid_moves(board):
+            x, y = self.get_pos()
+            board.add_blank([x, y])
+            self.pos = pos
+            board.add_piece(self)
+            if self.can_castle():
+                self.flag_uncastleable()
+            return True
+        else:
+            return False
+
+    def can_castle(self):
+        return self.castleable
+
+    def flag_uncastleable(self):
+        self.castleable = False
+
+    def valid_moves(self, board):
+        moves = self.check_perpendicular(board)
         return moves
 
-    def getCopy(self):
-        return Rook(self.pos, self.color)
+    def get_copy(self):
+        return Rook(self.pos, self.color, self.can_castle())
