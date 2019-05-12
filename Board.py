@@ -1,17 +1,22 @@
 from Piece import *
 
 class Board:
-    def __init__(self):
+    def __init__(self, board=1):
         self.rows = 8
-        self.board = [[0 for x in range(self.rows)]for _ in range(self.rows)]
-        self.board[0][6] = 0
+        if board == 1:
+            self.board = [[0 for x in range(self.rows)]for _ in range(self.rows)]
+        else:
+            self.board = board
 
     def update(self, screen):
         for x in range(8):
             for y in range(8):
                 square = self.getSquare([x, y])
-                if square != 0:
+                if isinstance(square, King):
+                    square.setCheck(square.isChecked(self))
+                if isinstance(square, Piece):
                     square.draw(screen)
+
 
     def printBoard(self):
         for j in range(self.rows-1,-1,-1):
@@ -64,6 +69,32 @@ class Board:
     def addBlank(self, pos):
         if pos[0] in range(8) and pos[1] in range(8):
             self.board[pos[0]][pos[1]] = 0
+
+    def getBoardCopy(self):
+        board = [[0 for x in range(self.rows)] for _ in range(self.rows)]
+        for x in range(8):
+            for y in range(8):
+                square = self.getSquare([x, y])
+                if isinstance(square, Piece):
+                    board[x][y] = square.getCopy()
+        return board
+
+    def testMove(self, origin, dest): # Returns true if move is valid
+        testboard = Board(self.getBoardCopy())
+        square = testboard.getSquare(origin)
+        testboard.addBlank(origin)
+        square.setPos(dest)
+        testboard.addPiece(square)
+        color = square.getColor()
+        for x in range(8):
+            for y in range(8):
+                square = testboard.getSquare([x, y])
+                if isinstance(square, King) and square.getColor() == color:
+                    king = square
+                    if king.isChecked(testboard):
+                        return False
+        return True
+
 
 
 
