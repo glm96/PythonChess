@@ -18,11 +18,31 @@ class Board:
                 if isinstance(square, Piece):
                     square.draw(screen)
 
+    def get_kings(self):
+        kings = []
+        for x in range(8):
+            for y in range(8):
+                square = self.get_square([x, y])
+                if isinstance(square, King):
+                    kings.append(square)
+        return kings
+
     def print_board(self):
         for j in range(self.rows-1, -1, -1):
             for i in range(self.rows):
                 print(self.board[i][j], end='')
             print("")
+
+    def can_team_move(self, color):
+
+        for x in range(8):
+            for y in range(8):
+                square = self.get_square([x, y])
+                if isinstance(square, Piece):
+                    if square.get_color() == color:
+                        if len(square.valid_moves(self)) != 0:
+                            return True
+        return False
 
     def get_square(self, pos):
         x, y = pos
@@ -54,8 +74,8 @@ class Board:
         self.add_piece(Rook([0, 7], "b"))
         self.add_piece(Knight([1, 7], "b"))
         self.add_piece(Bishop([2, 7], "b"))
-        self.add_piece(Queen([4, 7], "b"))
-        self.add_piece(King([3, 7], "b"))
+        self.add_piece(Queen([3, 7], "b"))
+        self.add_piece(King([4, 7], "b"))
         self.add_piece(Bishop([5, 7], "b"))
         self.add_piece(Knight([6, 7], "b"))
         self.add_piece(Rook([7, 7], "b"))

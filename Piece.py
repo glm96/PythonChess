@@ -393,7 +393,7 @@ class King (Piece):
                 break
             else:
                 temp_x = temp_x - 1
-                temp_y = temp_y + 1
+                temp_y = temp_y - 1
         # UP LEFT
 
         temp_x = x - 1
