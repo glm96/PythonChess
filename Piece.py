@@ -31,14 +31,21 @@ class Piece:
         self.pos = pos
 
     def move(self, pos, board):
-        if pos in self.valid_moves(board):
-            x, y = self.get_pos()
-            board.add_blank([x, y])
-            self.pos = pos
-            board.add_piece(self)
-            return True
-        else:
+        x, y = self.get_pos()
+        board.add_blank([x, y])
+        self.pos = pos
+        board.add_piece(self)
+
+    def is_taking(self,board, move):
+        if board.get_square(move) == 0:
             return False
+        return True
+
+    def get_FEN(self):
+        s = str(self)
+        if self.color == "b":
+            s = str(self).lower()
+        return s
 
     def valid_moves(self, board):
         pass
@@ -179,7 +186,7 @@ class Bishop (Piece):
             self.img = w_bishop
 
     def __str__(self):
-        return self.color + "B"
+        return "B"
 
     def valid_moves(self, board):
         return self.check_diagonal(board)
@@ -200,7 +207,7 @@ class King (Piece):
         self.castleable = cast
 
     def __str__(self):
-        return self.color + "K"
+        return "K"
 
     def draw(self, window):
         if self.get_color() == "w":
@@ -464,7 +471,7 @@ class Knight (Piece):
             self.img = w_knight
 
     def __str__(self):
-        return self.color + "N"
+        return "N"
 
     def valid_moves(self, board):
         moves = []
@@ -497,7 +504,14 @@ class Pawn (Piece):
             self.img = w_pawn
 
     def __str__(self):
-        return self.color + "P"
+        return "P"
+
+    def is_taking(self, board, move):
+        if board.get_square(move) == 0:
+            if self.get_pos()[0] != move[0]:  # En passant
+                return True
+            return False
+        return True
 
     def get_passant(self):
         return self.passant
@@ -506,26 +520,23 @@ class Pawn (Piece):
         self.passant = False
 
     def move(self, pos, board):
-        if pos in self.valid_moves(board):
-            if pos[1] in [0,7]:
-                piece = Queen(pos, self.color)
-                board.add_piece(piece)
-                board.add_blank(self.pos)
-                return True
-            else:
-                x, y = self.get_pos()
-                if y != pos[1]:  # Taking a piece
-                    square = board.get_square(pos)
-                    if square == 0:  # En Passant
-                        board.add_blank([pos[0], y])
-                if abs(y-pos[1]) == 2:
-                    self.passant = True
-                board.add_blank([x, y])
-                self.pos = pos
-                board.add_piece(self)
-                return True
+        if pos[1] in [0, 7]:
+            piece = Queen(pos, self.color)
+            board.add_piece(piece)
+            board.add_blank(self.pos)
+            return True
         else:
-            return False
+            x, y = self.get_pos()
+            if y != pos[1]:  # Taking a piece
+                square = board.get_square(pos)
+                if square == 0:  # En Passant
+                    board.add_blank([pos[0], y])
+            if abs(y - pos[1]) == 2:
+                self.passant = True
+            board.add_blank([x, y])
+            self.pos = pos
+            board.add_piece(self)
+            return True
 
     def is_valid(self, color, move, board):
         if not (move[0] in range(0, 8) and move[1] in range(0, 8)):
@@ -533,12 +544,12 @@ class Pawn (Piece):
         square = board.get_square(move)
         x = move[0]
 
-        if x == self.pos[0]:  # Taking a piece
+        if x == self.pos[0]:  # Moving forward
             if square == 0:
                 if board.test_move(self.pos, move):
                     return True
-        else:  # Moving forwards
-            if square != 0 and square.get_color() != self.color:
+        else:  # Taking a piece
+            if isinstance(square, Piece) and square.get_color() != self.color:
                 if board.test_move(self.pos, move):
                     return True
         return False
@@ -562,23 +573,37 @@ class Pawn (Piece):
             square = board.get_square([x - 1, y])
             if self.check_passant(square):
                 if board.get_square([x - 1, y + mod]) == 0:
-                    validmoves.append([x - 1, y + mod])
+                    if board.test_move(self.get_pos(), [x-1, y+mod]):
+                        validmoves.append([x - 1, y + mod])
         if x < 7:
             square = board.get_square([x + 1, y])
             if self.check_passant(square):
                 if board.get_square([x + 1, y + mod]) == 0:
-                    validmoves.append([x + 1, y + mod])
+                    if board.test_move(self.get_pos(), [x - 1, y + mod]):
+                        validmoves.append([x + 1, y + mod])
 
         return validmoves
+
+
+        # testboard = Board(self.get_board_copy())
+        # square = testboard.get_square(origin)
+        # testboard.add_blank(origin)
+        # square.set_pos(dest)
+        # testboard.add_piece(square)
+        # color = square.get_color()
+        # for x in range(8):
+        #     for y in range(8):
+        #         square = testboard.get_square([x, y])
+        #         if isinstance(square, King) and square.get_color() == color:
+        #             king = square
+        #             if king.is_checked(testboard):
+        #                 return False
+        # return True
 
     def check_passant(self, square):
         if square == 0:
             return False
-        if self.color == "w":
-            color = "b"
-        else:
-            color = "w"
-        if str(square) == color + "P":
+        if isinstance(square, Pawn) and square.get_color() != self.color:
             if square.get_passant():
                 return True
 
@@ -595,7 +620,7 @@ class Queen (Piece):
             self.img = w_queen
 
     def __str__(self):
-        return self.color + "Q"
+        return "Q"
 
     def valid_moves(self, board):
         moves = self.check_diagonal(board)
@@ -617,19 +642,17 @@ class Rook (Piece):
         self.castleable = cast
 
     def __str__(self):
-        return self.color + "R"
+        return "R"
 
     def move(self, pos, board):
-        if pos in self.valid_moves(board):
-            x, y = self.get_pos()
-            board.add_blank([x, y])
-            self.pos = pos
-            board.add_piece(self)
-            if self.can_castle():
-                self.flag_uncastleable()
-            return True
-        else:
-            return False
+        x, y = self.get_pos()
+        board.add_blank([x, y])
+        self.pos = pos
+        board.add_piece(self)
+        if self.can_castle():
+            self.flag_uncastleable()
+        return True
+
 
     def can_castle(self):
         return self.castleable

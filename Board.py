@@ -44,6 +44,18 @@ class Board:
                             return True
         return False
 
+    def is_ambiguous(self, piece, move):
+        color = piece.get_color()
+        if isinstance(piece, (Rook, Knight)):  # Only these types can be ambiguous
+            for x in range(8):
+                for y in range(8):
+                    square = self.get_square([x, y])
+                    if (type(piece) is type(square))and square.get_color() == color:
+                        if not (square is piece):
+                            if move in square.valid_moves(self):
+                                return True
+        return False
+
     def get_square(self, pos):
         x, y = pos
         if x in range(8) and y in range(8):
@@ -59,7 +71,7 @@ class Board:
             self.add_piece(wpawn)
             self.add_piece(bpawn)
 
-        # White pieces
+        # # White pieces
         self.add_piece(Rook([0, 0], "w"))
         self.add_piece(Knight([1, 0], "w"))
         self.add_piece(Bishop([2, 0], "w"))
@@ -97,10 +109,12 @@ class Board:
                     board[x][y] = square.get_copy()
         return board
 
-    def test_move(self, origin, dest):  # Returns true if move is valid
+    def test_move(self, origin, dest, passant=False):  # Returns true if move is valid
         testboard = Board(self.get_board_copy())
         square = testboard.get_square(origin)
         testboard.add_blank(origin)
+        if passant:
+            testboard.add_blank([dest[0], origin[1]])  # Pawn to be taken
         square.set_pos(dest)
         testboard.add_piece(square)
         color = square.get_color()
