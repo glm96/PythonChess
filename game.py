@@ -163,12 +163,14 @@ def update_PGN(piece, move):
     #  Castling
     if isinstance(piece, King):
         if abs(move[0] - piece.get_pos()[0]) == 2:  # Castling
-            if move[0] == 1:
+            if move[0] == 2:
                 s2 = "O-O-O"
             else:
                 s2 = "O-O"
             clickedPiece.move(move, board)
             res = s + s2 + " "
+            if res == "":
+                print(PGN)
             PGN += res
             return True
 
@@ -194,6 +196,8 @@ def update_PGN(piece, move):
             s4 = "+"
 
     res = s+s2+s3+format_pos(move)+s4+" "
+    if res == "":
+        print(PGN)
     PGN += res
     return True
 

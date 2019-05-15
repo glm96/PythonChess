@@ -331,9 +331,10 @@ class King (Piece):
             if tx in range(8):
                 for ty in range(y-1, y+2, 1):
                     if ty in range(8):
-                        square = board.get_square([x, y])
-                        if isinstance(square, King) and square.get_color() != self.get_color():
-                            return True
+                        if not(tx == x and ty == y):
+                            square = board.get_square([tx, ty])
+                            if isinstance(square, King):
+                                return True
         # Check for pawns
         for tx in [x-1, x+1]:
             if tx in range(8) and y+mod in range(8):

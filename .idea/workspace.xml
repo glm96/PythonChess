@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="395d7160-d0aa-4708-9e8d-6d959455bbce" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Board.py" beforeDir="false" afterPath="$PROJECT_DIR$/Board.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Piece.py" beforeDir="false" afterPath="$PROJECT_DIR$/Piece.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/game.py" beforeDir="false" afterPath="$PROJECT_DIR$/game.py" afterDir="false" />
@@ -18,64 +17,61 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Piece.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="303">
-              <caret line="40" column="24" lean-forward="true" selection-start-line="40" selection-start-column="24" selection-end-line="40" selection-end-column="24" />
+            <state relative-caret-position="266">
+              <caret line="306" column="32" selection-start-line="306" selection-start-column="32" selection-end-line="306" selection-end-column="32" />
               <folding>
+                <element signature="e#758#5152#0" />
                 <element signature="e#798#860#0" />
                 <element signature="e#898#912#0" />
-                <element signature="e#1226#1230#0" />
-                <element signature="e#1268#1316#0" />
-                <element signature="e#1369#1454#0" />
-                <element signature="e#1565#3312#0" />
-                <element signature="e#3364#4603#0" />
-                <element signature="e#4709#4986#0" />
-                <element signature="e#5020#5024#0" />
-                <element signature="e#5054#5418#0" />
-                <element signature="e#5446#13679#0" />
-                <element signature="e#13709#14545#0" />
-                <element signature="e#15063#15139#0" />
-                <element signature="e#16444#18044#0" />
-                <element signature="e#17699#17752#0" />
-                <element signature="e#17780#18247#0" />
-                <element signature="e#18596#19456#0" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/game.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-318">
-              <caret line="164" column="62" selection-start-line="164" selection-start-column="62" selection-end-line="164" selection-end-column="62" />
-              <folding>
-                <element signature="e#0#23#0" expanded="true" />
-                <element signature="e#381#1656#0" />
-                <element signature="e#1896#2399#0" />
-                <element signature="e#2176#2227#0" />
-                <element signature="e#5346#7036#0" />
+                <element signature="e#1693#3440#0" />
+                <element signature="e#5182#5546#0" />
+                <element signature="e#5640#5833#0" />
+                <element signature="e#5866#5876#0" />
+                <element signature="e#6275#6864#0" />
+                <element signature="e#6908#7610#0" />
+                <element signature="e#7652#7672#0" />
+                <element signature="e#7716#8902#0" />
+                <element signature="e#8939#8958#0" />
+                <element signature="e#9001#10574#0" />
+                <element signature="e#10623#11096#0" />
+                <element signature="e#11143#12641#0" />
+                <element signature="e#12693#13577#0" />
+                <element signature="e#13613#13635#0" />
+                <element signature="e#13678#13701#0" />
+                <element signature="e#13735#13807#0" />
+                <element signature="e#13837#14660#0" />
+                <element signature="e#14688#18618#0" />
+                <element signature="e#18646#19113#0" />
+                <element signature="e#19140#19946#0" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/game.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="355">
+              <caret line="178" column="25" selection-start-line="178" selection-start-column="25" selection-end-line="178" selection-end-column="25" />
+              <folding>
+                <element signature="e#0#23#0" expanded="true" />
+                <element signature="e#1896#2399#0" />
+                <element signature="e#5538#5898#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Board.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="476">
-              <caret line="127" column="19" lean-forward="true" selection-start-line="127" selection-start-column="19" selection-end-line="127" selection-end-column="19" />
+            <state relative-caret-position="527">
+              <caret line="103" column="41" lean-forward="true" selection-start-line="77" selection-start-column="8" selection-end-line="103" selection-end-column="41" />
               <folding>
                 <element signature="e#285#576#0" />
                 <element signature="e#611#835#0" />
                 <element signature="e#872#1017#0" />
                 <element signature="e#1064#1384#0" />
-                <element signature="e#1442#1820#0" />
-                <element signature="e#1425#1532#0" />
-                <element signature="e#2112#3148#0" />
-                <element signature="e#2528#2583#0" />
-                <element signature="e#2623#2711#0" />
-                <element signature="e#2751#3042#0" />
-                <element signature="e#3124#3677#0" />
               </folding>
             </state>
           </provider>
@@ -116,9 +112,9 @@
       <list>
         <option value="$PROJECT_DIR$/HelloWorld.py" />
         <option value="$PROJECT_DIR$/piece.py" />
-        <option value="$PROJECT_DIR$/Board.py" />
-        <option value="$PROJECT_DIR$/Piece.py" />
         <option value="$PROJECT_DIR$/game.py" />
+        <option value="$PROJECT_DIR$/Piece.py" />
+        <option value="$PROJECT_DIR$/Board.py" />
       </list>
     </option>
   </component>
@@ -316,62 +312,59 @@
     <entry file="file://$PROJECT_DIR$/img/b_bishop.png">
       <provider selected="true" editor-type-id="images" />
     </entry>
+    <entry file="file://$PROJECT_DIR$/game.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="355">
+          <caret line="178" column="25" selection-start-line="178" selection-start-column="25" selection-end-line="178" selection-end-column="25" />
+          <folding>
+            <element signature="e#0#23#0" expanded="true" />
+            <element signature="e#1896#2399#0" />
+            <element signature="e#5538#5898#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Piece.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="303">
-          <caret line="40" column="24" lean-forward="true" selection-start-line="40" selection-start-column="24" selection-end-line="40" selection-end-column="24" />
+        <state relative-caret-position="266">
+          <caret line="306" column="32" selection-start-line="306" selection-start-column="32" selection-end-line="306" selection-end-column="32" />
           <folding>
+            <element signature="e#758#5152#0" />
             <element signature="e#798#860#0" />
             <element signature="e#898#912#0" />
-            <element signature="e#1226#1230#0" />
-            <element signature="e#1268#1316#0" />
-            <element signature="e#1369#1454#0" />
-            <element signature="e#1565#3312#0" />
-            <element signature="e#3364#4603#0" />
-            <element signature="e#4709#4986#0" />
-            <element signature="e#5020#5024#0" />
-            <element signature="e#5054#5418#0" />
-            <element signature="e#5446#13679#0" />
-            <element signature="e#13709#14545#0" />
-            <element signature="e#15063#15139#0" />
-            <element signature="e#16444#18044#0" />
-            <element signature="e#17699#17752#0" />
-            <element signature="e#17780#18247#0" />
-            <element signature="e#18596#19456#0" />
+            <element signature="e#1693#3440#0" />
+            <element signature="e#5182#5546#0" />
+            <element signature="e#5640#5833#0" />
+            <element signature="e#5866#5876#0" />
+            <element signature="e#6275#6864#0" />
+            <element signature="e#6908#7610#0" />
+            <element signature="e#7652#7672#0" />
+            <element signature="e#7716#8902#0" />
+            <element signature="e#8939#8958#0" />
+            <element signature="e#9001#10574#0" />
+            <element signature="e#10623#11096#0" />
+            <element signature="e#11143#12641#0" />
+            <element signature="e#12693#13577#0" />
+            <element signature="e#13613#13635#0" />
+            <element signature="e#13678#13701#0" />
+            <element signature="e#13735#13807#0" />
+            <element signature="e#13837#14660#0" />
+            <element signature="e#14688#18618#0" />
+            <element signature="e#18646#19113#0" />
+            <element signature="e#19140#19946#0" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Board.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="476">
-          <caret line="127" column="19" lean-forward="true" selection-start-line="127" selection-start-column="19" selection-end-line="127" selection-end-column="19" />
+        <state relative-caret-position="527">
+          <caret line="103" column="41" lean-forward="true" selection-start-line="77" selection-start-column="8" selection-end-line="103" selection-end-column="41" />
           <folding>
             <element signature="e#285#576#0" />
             <element signature="e#611#835#0" />
             <element signature="e#872#1017#0" />
             <element signature="e#1064#1384#0" />
-            <element signature="e#1442#1820#0" />
-            <element signature="e#1425#1532#0" />
-            <element signature="e#2112#3148#0" />
-            <element signature="e#2528#2583#0" />
-            <element signature="e#2623#2711#0" />
-            <element signature="e#2751#3042#0" />
-            <element signature="e#3124#3677#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/game.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-318">
-          <caret line="164" column="62" selection-start-line="164" selection-start-column="62" selection-end-line="164" selection-end-column="62" />
-          <folding>
-            <element signature="e#0#23#0" expanded="true" />
-            <element signature="e#381#1656#0" />
-            <element signature="e#1896#2399#0" />
-            <element signature="e#2176#2227#0" />
-            <element signature="e#5346#7036#0" />
           </folding>
         </state>
       </provider>
