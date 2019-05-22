@@ -4,8 +4,8 @@ import easygui
 import datetime
 import pymongo
 
-boardimg = pygame.image.load("img\\board.png")
-windowicon = pygame.image.load("img\\icon.png")
+boardimg = pygame.image.load("C:\\Users\\tyrio\\PycharmProjects\\PythonChess\\img\\board.png")
+windowicon = pygame.image.load("C:\\Users\\tyrio\\PycharmProjects\\PythonChess\\img\\icon.png")
 
 WHITE = "w"
 BLACK = "b"
@@ -29,12 +29,6 @@ board = Board()
 
 def main():
 
-    global w_king, b_king, col
-    client = pymongo.MongoClient("mongodb://localhost:27017")
-    db = client["pychess"]
-    col = db["games"]
-
-
     pygame.init()
     screen = pygame.display.set_mode((width, height))
     pygame.display.set_caption("PyChess")
@@ -42,13 +36,7 @@ def main():
     clock = pygame.time.Clock()
     done = False
     board.load_board()
-    kings = board.get_kings()
-    if kings[0].get_color() == WHITE:  # Will always be true in standard games
-        w_king = kings[0]
-        b_king = kings[1]
-    else:
-        w_king = kings[1]
-        b_king = kings[0]
+    store_kings()
 
     while not done:
 
@@ -75,19 +63,33 @@ def main():
         clock.tick(50)
 
 
-def game_restart():
-    global game_ended, lastMoved, clicked, turn, w_king, b_king, PGN
-    for x in range(8):
-        for y in range(8):
-            board.add_blank([x, y])
-    board.load_board()
+def store_kings():
+    """
+    Saves both King Objects to their respective variables, in order
+    to quickly locate them in other functions.
+    """
+
+    global b_king, w_king
     kings = board.get_kings()
-    if kings[0].get_color() == "w":  # Will always be true in standard games
+    if kings[0].get_color() == WHITE:  # Will always be true in standard games
         w_king = kings[0]
         b_king = kings[1]
     else:
         w_king = kings[1]
         b_king = kings[0]
+
+
+def game_restart():
+    """
+    Starts a common game, setting pieces in place and clearing all the configurations used
+    in last game
+    """
+    global game_ended, lastMoved, clicked, turn, w_king, b_king, PGN, PGN_result
+    for x in range(8):
+        for y in range(8):
+            board.add_blank([x, y])
+    board.load_board()
+    store_kings()
     game_ended = False
     lastMoved = 0
     clicked = False
@@ -97,15 +99,34 @@ def game_restart():
 
 
 def format_pos(pos):
+    """
+    Return the position as letter+number coordinates, rather than two numbers, for PGN purposes
+
+    :type pos: list
+    :param pos: Position to be formated
+    :return: Position in chess notation
+    """
     x = chr(ord('a')+pos[0])
     return x + str(pos[1]+1)
 
 
 def on_click_board(event):
+    """
+    Handler for clicks on the board
+
+    Takes care of most of the game logic, checking whether the move was valid or not,
+     then modifying global game variables however needed.
+
+    :param event: Click event
+    :return:
+    """
     global clicked, clickedPiece, turn, lastMoved, game_ended, msg, PGN, PGN_result
     side = width / 8
+    # Getting the click coordinates out of the event
     x = int(event.pos[0] / side)
     y = int((event.pos[1] - 500) * -1 / side)
+
+    # Logic for in progress games
     if not game_ended:
         if not clicked:  # Selecting a piece
             square = board.get_square([x, y])
@@ -125,6 +146,7 @@ def on_click_board(event):
                 lastMoved = clickedPiece
             clicked = False
             clickedPiece = 0
+            # Check whether the game ended ith last move or not
             if not board.can_team_move(turn):
                 PGN = PGN[0:len(PGN)-1]+"#"
                 game_ended = True
@@ -144,12 +166,19 @@ def on_click_board(event):
                         else:
                             msg = "Draw"
                             PGN_result = "1/2-1/2"
-                store_game()
-    else:  # Game has ended, ask for restart
+                store_game()    # Store the game on the database
+    else:  # Game has ended, currently asking for restart / exit
         pass
 
 
 def update_PGN(piece, move):
+    """
+    Adds current move to PGN
+    :type piece: Piece
+    :param piece: Piece that moved
+    :param move: Destination move
+    :return: Returns true when stored
+    """
     global n_turn, PGN
     s2 = ""
     s3 = ""
@@ -203,6 +232,14 @@ def update_PGN(piece, move):
 
 
 def store_game():
+    """
+    Stores the game to a local mongoDB database
+    :return:
+    """
+    client = pymongo.MongoClient("mongodb://localhost:27017")
+    db = client["pychess"]
+    col = db["games"]
+
     now = datetime.datetime.now()
     res = {"Event": "Friendly PyChess game",
            "Site": "PyChess application",
@@ -215,7 +252,13 @@ def store_game():
            "FEN": get_FEN()}
     col.insert_one(res)
 
+
 def get_FEN():
+    """
+    Generates FEN string of current board
+
+    :return: Returns a string with current board's FEN
+    """
     cont = 0
     lines = []
     line = ""
@@ -268,12 +311,22 @@ def get_FEN():
 
 
 def highlight_square(pos, screen):
+    """
+    Draw circles on valid destination squares for current piece
+
+    :type pos: list
+    :param pos: Position to highlight
+    :param screen: PyGame screen controller
+    """
     x = int(width / 8 * pos[0] + width/16)
     y = int(height - height / 8 * (1 + pos[1]) + height/16)
     pygame.draw.circle(screen, (255, 0, 0), [x, y],  8, 0)
 
 
 def clear_passants():
+    """
+    Clear en passant flag from last moved pawn
+    """
     if isinstance(lastMoved, Pawn):
         lastMoved.clear_passant()
 

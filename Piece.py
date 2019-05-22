@@ -3,66 +3,124 @@ import pygame
 width = 500
 height = 500
 
-b_bishop = pygame.image.load("img\\b_bishop.png")
-b_king = pygame.image.load("img\\b_king.png")
-b_king_checked = pygame.image.load("img\\b_king_checked.png")
-b_knight = pygame.image.load("img\\b_knight.png")
-b_pawn = pygame.image.load("img\\b_pawn.png")
-b_queen = pygame.image.load("img\\b_queen.png")
-b_rook = pygame.image.load("img\\b_rook.png")
+# Loading images for all pieces
+b_bishop = pygame.image.load("C:\\Users\\tyrio\\PycharmProjects\\PythonChess\\img\\b_bishop.png")
+b_king = pygame.image.load("C:\\Users\\tyrio\\PycharmProjects\\PythonChess\\img\\b_king.png")
+b_king_checked = pygame.image.load("C:\\Users\\tyrio\\PycharmProjects\\PythonChess\\img\\b_king_checked.png")
+b_knight = pygame.image.load("C:\\Users\\tyrio\\PycharmProjects\\PythonChess\\img\\b_knight.png")
+b_pawn = pygame.image.load("C:\\Users\\tyrio\\PycharmProjects\\PythonChess\\img\\b_pawn.png")
+b_queen = pygame.image.load("C:\\Users\\tyrio\\PycharmProjects\\PythonChess\\img\\b_queen.png")
+b_rook = pygame.image.load("C:\\Users\\tyrio\\PycharmProjects\\PythonChess\\img\\b_rook.png")
 
-w_bishop = pygame.image.load("img\\w_bishop.png")
-w_king = pygame.image.load("img\\w_king.png")
-w_king_checked = pygame.image.load("img\\w_king_checked.png")
-w_knight = pygame.image.load("img\\w_knight.png")
-w_pawn = pygame.image.load("img\\w_pawn.png")
-w_queen = pygame.image.load("img\\w_queen.png")
-w_rook = pygame.image.load("img\\w_rook.png")
+w_bishop = pygame.image.load("C:\\Users\\tyrio\\PycharmProjects\\PythonChess\\img\\w_bishop.png")
+w_king = pygame.image.load("C:\\Users\\tyrio\\PycharmProjects\\PythonChess\\img\\w_king.png")
+w_king_checked = pygame.image.load("C:\\Users\\tyrio\\PycharmProjects\\PythonChess\\img\\w_king_checked.png")
+w_knight = pygame.image.load("C:\\Users\\tyrio\\PycharmProjects\\PythonChess\\img\\w_knight.png")
+w_pawn = pygame.image.load("C:\\Users\\tyrio\\PycharmProjects\\PythonChess\\img\\w_pawn.png")
+w_queen = pygame.image.load("C:\\Users\\tyrio\\PycharmProjects\\PythonChess\\img\\w_queen.png")
+w_rook = pygame.image.load("C:\\Users\\tyrio\\PycharmProjects\\PythonChess\\img\\w_rook.png")
 
 
 class Piece:
-
+    """
+    Parent class for all pieces
+    """
     def __init__(self, pos, color):
+        """
+        Piece initialization
+        :param pos: Current position of the piece
+        :param color: Color of the piece
+        """
         self.pos = pos
         self.color = color
         self.img = 0
 
     def set_pos(self, pos):
+        """
+        Setter for piece position
+
+        :param pos: New position for the piece
+        """
         self.pos = pos
 
     def move(self, pos, board):
+        """
+        Basic move of a piece
+
+        :param pos: Position to move to
+        :param board: Board in which the piece is to be stored
+        """
         x, y = self.get_pos()
         board.add_blank([x, y])
         self.pos = pos
         board.add_piece(self)
 
-    def is_taking(self,board, move):
+    def is_taking(self, board, move):
+        """
+        Checks whether the piece is making a taking move for PGN purposes
+
+        :param board: Board where pieces are stored
+        :param move: Move made
+        """
         if board.get_square(move) == 0:
             return False
         return True
 
     def get_FEN(self):
+        """
+        Returns the piece's representation in FEN format (Black lowercase, white uppercase)
+
+        :return: FEN string of the piece
+        """
         s = str(self)
         if self.color == "b":
             s = str(self).lower()
         return s
 
     def valid_moves(self, board):
+        """
+        Returns a list of valid moves for the specified piece
+
+        :param board: Board where the piece is located
+        :return: List with valid moves
+        """
         pass
 
     def draw(self, window):
+        """
+        Draw the piece's image onto the board
+
+        :param window: PyGame screen object
+        """
         window.blit(self.img, self.get_coords(self.pos))
 
     @staticmethod
     def get_coords(pos):
+        """
+        Returns coordinates as (x,y) relative to window size
+
+        :param pos: Position to convert
+        :return: X and Y parameters of the position
+        """
         x = width/8 * (pos[0])
         y = height - height/8 * (1+pos[1])
         return x, y
 
     def get_pos(self):
+        """
+        Getter for piece position
+
+        :return: Current position of the piece
+        """
         return self.pos[0], self.pos[1]
 
     def check_diagonal(self, board):
+        """
+        Method for checking whether there are valid moves in all four diagonals
+
+        :param board: Board where the piece is located
+        :return: list with all valid moves
+        """
         moves = []
         x, y = self.get_pos()
         ran = range(8)
@@ -122,6 +180,12 @@ class Piece:
         return moves
 
     def check_perpendicular(self, board):
+        """
+        Method for checking whether there are valid moves in all four straight lines
+
+        :param board: Board where the piece is located
+        :return: list with all valid moves
+        """
         moves = []
         x, y = self.get_pos()
 
@@ -160,9 +224,22 @@ class Piece:
         return moves
 
     def get_color(self):
+        """
+        Getter for piece color
+
+        :return: A string with "w" or "b" representing the color of the piece
+        """
         return self.color
 
     def is_valid(self, color, move, board):
+        """
+        Tests whether a specified move is or not valid
+
+        :param color: Color of the current piece
+        :param move: Move to be tested
+        :param board: Board where the piece is located
+        :return: True if the move is valid
+        """
         if not (move[0] in range(0, 8) and move[1] in range(0, 8)):
             return False
         square = board.get_square(move)
@@ -173,6 +250,11 @@ class Piece:
         return False
 
     def get_copy(self):
+        """
+        Returns an identical piece
+
+        :return: A Piece object with the same parameters
+        """
         pass
 
 
@@ -242,6 +324,14 @@ class King (Piece):
                 return False
 
     def castle(self, pos, board):
+        """
+        Handles castling movements
+
+        :param pos: Position to move to
+        :param board: Board the move is being made on
+        :return: True if castled correctly
+        """
+
         x, y = self.get_pos()
         # Get the involved rook
         if pos[0] < x:  # Left castling
@@ -263,6 +353,11 @@ class King (Piece):
         return False  # Castling didn't work
 
     def set_check(self, check):
+        """
+        Setter for check flag
+
+        :param check: Value to set to the flag
+        """
         self.checked = check
 
     def valid_moves(self, board):
@@ -302,9 +397,20 @@ class King (Piece):
         return validmoves
 
     def get_checked(self):
+        """
+        Getter for check flag
+
+        :return: Returns king's checked flag
+        """
         return self.checked
 
     def is_checked(self, board):
+        """
+        Checks if king is in check by any other piece
+
+        :param board: Board the game is running on
+        :return: True if it's being checked
+        """
         x, y = self.get_pos()
         if self.get_color() == "w":
             mod = 1
@@ -345,6 +451,12 @@ class King (Piece):
         return False
 
     def get_knight_moves(self, board):
+        """
+        Returns all possible squares a knight can move to, relative to current position
+
+        :param board: Board the game is playing on
+        :return: A list of positions
+        """
         moves = []
         x, y = self.get_pos()
         # Far left and far right moves
@@ -453,9 +565,17 @@ class King (Piece):
         return moves
 
     def can_castle(self):
+        """
+        Getter for castling flag
+
+         :return: True if can castle
+        """
         return self.castleable
 
     def flag_uncastleable(self):
+        """
+        Sets castling flag to False
+        """
         self.castleable = False
 
     def get_copy(self):
@@ -515,9 +635,17 @@ class Pawn (Piece):
         return True
 
     def get_passant(self):
+        """
+        Getter for en passant flag
+
+        :return: True if can be taken en passant
+        """
         return self.passant
 
     def clear_passant(self):
+        """
+        Sets en passant flag to false
+        """
         self.passant = False
 
     def move(self, pos, board):
@@ -585,23 +713,13 @@ class Pawn (Piece):
 
         return validmoves
 
-
-        # testboard = Board(self.get_board_copy())
-        # square = testboard.get_square(origin)
-        # testboard.add_blank(origin)
-        # square.set_pos(dest)
-        # testboard.add_piece(square)
-        # color = square.get_color()
-        # for x in range(8):
-        #     for y in range(8):
-        #         square = testboard.get_square([x, y])
-        #         if isinstance(square, King) and square.get_color() == color:
-        #             king = square
-        #             if king.is_checked(testboard):
-        #                 return False
-        # return True
-
     def check_passant(self, square):
+        """
+        Returns true if there is an en passant able pawn on the specified position
+
+        :param square: Square to check
+        :return: True if en passant flag at that position is True
+        """
         if square == 0:
             return False
         if isinstance(square, Pawn) and square.get_color() != self.color:
@@ -654,11 +772,18 @@ class Rook (Piece):
             self.flag_uncastleable()
         return True
 
-
     def can_castle(self):
+        """
+        Getter for castling flag
+
+         :return: True if can castle
+        """
         return self.castleable
 
     def flag_uncastleable(self):
+        """
+        Sets castling flag to False
+        """
         self.castleable = False
 
     def valid_moves(self, board):

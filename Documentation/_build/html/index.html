@@ -1,0 +1,968 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>Documentation for the Code &#8212; PyChess  documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="documentation-for-the-code">
+<h1>Documentation for the Code<a class="headerlink" href="#documentation-for-the-code" title="Permalink to this headline">¶</a></h1>
+<div class="toctree-wrapper compound">
+</div>
+<div class="section" id="module-game">
+<span id="game"></span><h2>Game<a class="headerlink" href="#module-game" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="game.clear_passants">
+<code class="descclassname">game.</code><code class="descname">clear_passants</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#game.clear_passants" title="Permalink to this definition">¶</a></dt>
+<dd><p>Clear en passant flag from last moved pawn</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="game.format_pos">
+<code class="descclassname">game.</code><code class="descname">format_pos</code><span class="sig-paren">(</span><em>pos</em><span class="sig-paren">)</span><a class="headerlink" href="#game.format_pos" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the position as letter+number coordinates, rather than two numbers, for PGN purposes</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>pos</strong> (<em>list</em>) – Position to be formated</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Position in chess notation</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="game.game_restart">
+<code class="descclassname">game.</code><code class="descname">game_restart</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#game.game_restart" title="Permalink to this definition">¶</a></dt>
+<dd><p>Starts a common game, setting pieces in place and clearing all the configurations used
+in last game</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="game.get_FEN">
+<code class="descclassname">game.</code><code class="descname">get_FEN</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#game.get_FEN" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generates FEN string of current board</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Returns a string with current board’s FEN</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="game.highlight_square">
+<code class="descclassname">game.</code><code class="descname">highlight_square</code><span class="sig-paren">(</span><em>pos</em>, <em>screen</em><span class="sig-paren">)</span><a class="headerlink" href="#game.highlight_square" title="Permalink to this definition">¶</a></dt>
+<dd><p>Draw circles on valid destination squares for current piece</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>pos</strong> (<em>list</em>) – Position to highlight</p></li>
+<li><p><strong>screen</strong> – PyGame screen controller</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="game.on_click_board">
+<code class="descclassname">game.</code><code class="descname">on_click_board</code><span class="sig-paren">(</span><em>event</em><span class="sig-paren">)</span><a class="headerlink" href="#game.on_click_board" title="Permalink to this definition">¶</a></dt>
+<dd><p>Handler for clicks on the board</p>
+<dl class="simple">
+<dt>Takes care of most of the game logic, checking whether the move was valid or not,</dt><dd><p>then modifying global game variables however needed.</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>event</strong> – Click event</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="game.red">
+<code class="descclassname">game.</code><code class="descname">red</code><a class="headerlink" href="#game.red" title="Permalink to this definition">¶</a></dt>
+<dd><p>r -&gt; int
+Gets or sets the red value of the Color.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="game.store_game">
+<code class="descclassname">game.</code><code class="descname">store_game</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#game.store_game" title="Permalink to this definition">¶</a></dt>
+<dd><p>Stores the game to a local mongoDB database
+:return:</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="game.store_kings">
+<code class="descclassname">game.</code><code class="descname">store_kings</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#game.store_kings" title="Permalink to this definition">¶</a></dt>
+<dd><p>Saves both King Objects to their respective variables, in order
+to quickly locate them in other functions.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="game.update_PGN">
+<code class="descclassname">game.</code><code class="descname">update_PGN</code><span class="sig-paren">(</span><em>piece</em>, <em>move</em><span class="sig-paren">)</span><a class="headerlink" href="#game.update_PGN" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds current move to PGN
+:type piece: Piece
+:param piece: Piece that moved
+:param move: Destination move
+:return: Returns true when stored</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-Board">
+<span id="board"></span><h2>Board<a class="headerlink" href="#module-Board" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="Board.Board">
+<em class="property">class </em><code class="descclassname">Board.</code><code class="descname">Board</code><span class="sig-paren">(</span><em>board=None</em><span class="sig-paren">)</span><a class="headerlink" href="#Board.Board" title="Permalink to this definition">¶</a></dt>
+<dd><p>Class representing the chess board, has information on current position of
+all pieces in the field, as well as other useful data</p>
+<dl class="method">
+<dt id="Board.Board.add_blank">
+<code class="descname">add_blank</code><span class="sig-paren">(</span><em>pos</em><span class="sig-paren">)</span><a class="headerlink" href="#Board.Board.add_blank" title="Permalink to this definition">¶</a></dt>
+<dd><p>Removes whatever piece was at the specified position</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>pos</strong> – Piece to make empty</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="Board.Board.add_piece">
+<code class="descname">add_piece</code><span class="sig-paren">(</span><em>piece</em><span class="sig-paren">)</span><a class="headerlink" href="#Board.Board.add_piece" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds the specified piece at its square</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>piece</strong> – Piece object to place</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="Board.Board.can_team_move">
+<code class="descname">can_team_move</code><span class="sig-paren">(</span><em>color</em><span class="sig-paren">)</span><a class="headerlink" href="#Board.Board.can_team_move" title="Permalink to this definition">¶</a></dt>
+<dd><p>Checks whether a valid move exists or not for one of the players</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>color</strong> – Color of the team being checked</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>True if it’s possible to move, meaning game has not ended</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="Board.Board.get_board_copy">
+<code class="descname">get_board_copy</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Board.Board.get_board_copy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns an exact copy of the board with different instances of its pieces for testing moves</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>A Board type object with pieces in the same positions as self</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="Board.Board.get_kings">
+<code class="descname">get_kings</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Board.Board.get_kings" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns both king Piece objects</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Array with both kings, with white being first</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="Board.Board.get_square">
+<code class="descname">get_square</code><span class="sig-paren">(</span><em>pos</em><span class="sig-paren">)</span><a class="headerlink" href="#Board.Board.get_square" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns whatever is placed in the specified position</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>pos</strong> – Position to check for</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Stored piece or 0 if it’s empty</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="Board.Board.is_ambiguous">
+<code class="descname">is_ambiguous</code><span class="sig-paren">(</span><em>piece</em>, <em>move</em><span class="sig-paren">)</span><a class="headerlink" href="#Board.Board.is_ambiguous" title="Permalink to this definition">¶</a></dt>
+<dd><p>Checks whether two pieces of the same type can move to the same square in
+the same turn for PGN writing purposes</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>piece</strong> – Piece that is trying to move to a square</p></li>
+<li><p><strong>move</strong> – Destination square</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>True if another piece of the same type can move to the same square</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="Board.Board.load_board">
+<code class="descname">load_board</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Board.Board.load_board" title="Permalink to this definition">¶</a></dt>
+<dd><p>Fill the board with pieces for a standard game</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Board.Board.print_board">
+<code class="descname">print_board</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Board.Board.print_board" title="Permalink to this definition">¶</a></dt>
+<dd><p>Prints current board to console for debugging purposes</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="Board.Board.test_move">
+<code class="descname">test_move</code><span class="sig-paren">(</span><em>origin</em>, <em>dest</em>, <em>passant=False</em><span class="sig-paren">)</span><a class="headerlink" href="#Board.Board.test_move" title="Permalink to this definition">¶</a></dt>
+<dd><p>Method for testing whether a move is valid or not</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>origin</strong> – Position of the piece to move</p></li>
+<li><p><strong>dest</strong> – Destination of the moving piece</p></li>
+<li><p><strong>passant</strong> – Flag for en passant takes, False by default</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>True if movement is valid</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="Board.Board.update">
+<code class="descname">update</code><span class="sig-paren">(</span><em>screen</em><span class="sig-paren">)</span><a class="headerlink" href="#Board.Board.update" title="Permalink to this definition">¶</a></dt>
+<dd><p>Draw current board on the screen</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>screen</strong> – PyGame screen controller</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-Piece">
+<span id="piece"></span><h2>Piece<a class="headerlink" href="#module-Piece" title="Permalink to this headline">¶</a></h2>
+<p>Indices and tables</p>
+<dl class="class">
+<dt id="Piece.Bishop">
+<em class="property">class </em><code class="descclassname">Piece.</code><code class="descname">Bishop</code><span class="sig-paren">(</span><em>pos</em>, <em>color</em><span class="sig-paren">)</span><a class="headerlink" href="#Piece.Bishop" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="method">
+<dt id="Piece.Bishop.get_copy">
+<code class="descname">get_copy</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Piece.Bishop.get_copy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns an identical piece</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>A Piece object with the same parameters</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="Piece.Bishop.valid_moves">
+<code class="descname">valid_moves</code><span class="sig-paren">(</span><em>board</em><span class="sig-paren">)</span><a class="headerlink" href="#Piece.Bishop.valid_moves" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a list of valid moves for the specified piece</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>board</strong> – Board where the piece is located</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>List with valid moves</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="Piece.King">
+<em class="property">class </em><code class="descclassname">Piece.</code><code class="descname">King</code><span class="sig-paren">(</span><em>pos</em>, <em>color</em>, <em>cast=True</em>, <em>checked=False</em><span class="sig-paren">)</span><a class="headerlink" href="#Piece.King" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="method">
+<dt id="Piece.King.can_castle">
+<code class="descname">can_castle</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Piece.King.can_castle" title="Permalink to this definition">¶</a></dt>
+<dd><p>Getter for castling flag</p>
+<blockquote>
+<div><dl class="field-list simple">
+<dt class="field-odd">return</dt>
+<dd class="field-odd"><p>True if can castle</p>
+</dd>
+</dl>
+</div></blockquote>
+</dd></dl>
+
+<dl class="method">
+<dt id="Piece.King.castle">
+<code class="descname">castle</code><span class="sig-paren">(</span><em>pos</em>, <em>board</em><span class="sig-paren">)</span><a class="headerlink" href="#Piece.King.castle" title="Permalink to this definition">¶</a></dt>
+<dd><p>Handles castling movements</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>pos</strong> – Position to move to</p></li>
+<li><p><strong>board</strong> – Board the move is being made on</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>True if castled correctly</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="Piece.King.check_diagonal">
+<code class="descname">check_diagonal</code><span class="sig-paren">(</span><em>board</em><span class="sig-paren">)</span><a class="headerlink" href="#Piece.King.check_diagonal" title="Permalink to this definition">¶</a></dt>
+<dd><p>Method for checking whether there are valid moves in all four diagonals</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>board</strong> – Board where the piece is located</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>list with all valid moves</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="Piece.King.check_perpendicular">
+<code class="descname">check_perpendicular</code><span class="sig-paren">(</span><em>board</em><span class="sig-paren">)</span><a class="headerlink" href="#Piece.King.check_perpendicular" title="Permalink to this definition">¶</a></dt>
+<dd><p>Method for checking whether there are valid moves in all four straight lines</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>board</strong> – Board where the piece is located</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>list with all valid moves</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="Piece.King.draw">
+<code class="descname">draw</code><span class="sig-paren">(</span><em>window</em><span class="sig-paren">)</span><a class="headerlink" href="#Piece.King.draw" title="Permalink to this definition">¶</a></dt>
+<dd><p>Draw the piece’s image onto the board</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>window</strong> – PyGame screen object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="Piece.King.flag_uncastleable">
+<code class="descname">flag_uncastleable</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Piece.King.flag_uncastleable" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets castling flag to False</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Piece.King.get_checked">
+<code class="descname">get_checked</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Piece.King.get_checked" title="Permalink to this definition">¶</a></dt>
+<dd><p>Getter for check flag</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Returns king’s checked flag</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="Piece.King.get_copy">
+<code class="descname">get_copy</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Piece.King.get_copy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns an identical piece</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>A Piece object with the same parameters</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="Piece.King.get_knight_moves">
+<code class="descname">get_knight_moves</code><span class="sig-paren">(</span><em>board</em><span class="sig-paren">)</span><a class="headerlink" href="#Piece.King.get_knight_moves" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns all possible squares a knight can move to, relative to current position</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>board</strong> – Board the game is playing on</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A list of positions</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="Piece.King.is_checked">
+<code class="descname">is_checked</code><span class="sig-paren">(</span><em>board</em><span class="sig-paren">)</span><a class="headerlink" href="#Piece.King.is_checked" title="Permalink to this definition">¶</a></dt>
+<dd><p>Checks if king is in check by any other piece</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>board</strong> – Board the game is running on</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>True if it’s being checked</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="Piece.King.move">
+<code class="descname">move</code><span class="sig-paren">(</span><em>pos</em>, <em>board</em><span class="sig-paren">)</span><a class="headerlink" href="#Piece.King.move" title="Permalink to this definition">¶</a></dt>
+<dd><p>Basic move of a piece</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>pos</strong> – Position to move to</p></li>
+<li><p><strong>board</strong> – Board in which the piece is to be stored</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="Piece.King.set_check">
+<code class="descname">set_check</code><span class="sig-paren">(</span><em>check</em><span class="sig-paren">)</span><a class="headerlink" href="#Piece.King.set_check" title="Permalink to this definition">¶</a></dt>
+<dd><p>Setter for check flag</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>check</strong> – Value to set to the flag</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="Piece.King.valid_moves">
+<code class="descname">valid_moves</code><span class="sig-paren">(</span><em>board</em><span class="sig-paren">)</span><a class="headerlink" href="#Piece.King.valid_moves" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a list of valid moves for the specified piece</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>board</strong> – Board where the piece is located</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>List with valid moves</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="Piece.Knight">
+<em class="property">class </em><code class="descclassname">Piece.</code><code class="descname">Knight</code><span class="sig-paren">(</span><em>pos</em>, <em>color</em><span class="sig-paren">)</span><a class="headerlink" href="#Piece.Knight" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="method">
+<dt id="Piece.Knight.get_copy">
+<code class="descname">get_copy</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Piece.Knight.get_copy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns an identical piece</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>A Piece object with the same parameters</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="Piece.Knight.valid_moves">
+<code class="descname">valid_moves</code><span class="sig-paren">(</span><em>board</em><span class="sig-paren">)</span><a class="headerlink" href="#Piece.Knight.valid_moves" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a list of valid moves for the specified piece</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>board</strong> – Board where the piece is located</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>List with valid moves</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="Piece.Pawn">
+<em class="property">class </em><code class="descclassname">Piece.</code><code class="descname">Pawn</code><span class="sig-paren">(</span><em>pos</em>, <em>color</em>, <em>passant=False</em><span class="sig-paren">)</span><a class="headerlink" href="#Piece.Pawn" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="method">
+<dt id="Piece.Pawn.check_passant">
+<code class="descname">check_passant</code><span class="sig-paren">(</span><em>square</em><span class="sig-paren">)</span><a class="headerlink" href="#Piece.Pawn.check_passant" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns true if there is an en passant able pawn on the specified position</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>square</strong> – Square to check</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>True if en passant flag at that position is True</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="Piece.Pawn.clear_passant">
+<code class="descname">clear_passant</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Piece.Pawn.clear_passant" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets en passant flag to false</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Piece.Pawn.get_copy">
+<code class="descname">get_copy</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Piece.Pawn.get_copy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns an identical piece</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>A Piece object with the same parameters</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="Piece.Pawn.get_passant">
+<code class="descname">get_passant</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Piece.Pawn.get_passant" title="Permalink to this definition">¶</a></dt>
+<dd><p>Getter for en passant flag</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>True if can be taken en passant</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="Piece.Pawn.is_taking">
+<code class="descname">is_taking</code><span class="sig-paren">(</span><em>board</em>, <em>move</em><span class="sig-paren">)</span><a class="headerlink" href="#Piece.Pawn.is_taking" title="Permalink to this definition">¶</a></dt>
+<dd><p>Checks whether the piece is making a taking move for PGN purposes</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>board</strong> – Board where pieces are stored</p></li>
+<li><p><strong>move</strong> – Move made</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="Piece.Pawn.is_valid">
+<code class="descname">is_valid</code><span class="sig-paren">(</span><em>color</em>, <em>move</em>, <em>board</em><span class="sig-paren">)</span><a class="headerlink" href="#Piece.Pawn.is_valid" title="Permalink to this definition">¶</a></dt>
+<dd><p>Tests whether a specified move is or not valid</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>color</strong> – Color of the current piece</p></li>
+<li><p><strong>move</strong> – Move to be tested</p></li>
+<li><p><strong>board</strong> – Board where the piece is located</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>True if the move is valid</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="Piece.Pawn.move">
+<code class="descname">move</code><span class="sig-paren">(</span><em>pos</em>, <em>board</em><span class="sig-paren">)</span><a class="headerlink" href="#Piece.Pawn.move" title="Permalink to this definition">¶</a></dt>
+<dd><p>Basic move of a piece</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>pos</strong> – Position to move to</p></li>
+<li><p><strong>board</strong> – Board in which the piece is to be stored</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="Piece.Pawn.valid_moves">
+<code class="descname">valid_moves</code><span class="sig-paren">(</span><em>board</em><span class="sig-paren">)</span><a class="headerlink" href="#Piece.Pawn.valid_moves" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a list of valid moves for the specified piece</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>board</strong> – Board where the piece is located</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>List with valid moves</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="Piece.Piece">
+<em class="property">class </em><code class="descclassname">Piece.</code><code class="descname">Piece</code><span class="sig-paren">(</span><em>pos</em>, <em>color</em><span class="sig-paren">)</span><a class="headerlink" href="#Piece.Piece" title="Permalink to this definition">¶</a></dt>
+<dd><p>Parent class for all pieces</p>
+<dl class="method">
+<dt id="Piece.Piece.check_diagonal">
+<code class="descname">check_diagonal</code><span class="sig-paren">(</span><em>board</em><span class="sig-paren">)</span><a class="headerlink" href="#Piece.Piece.check_diagonal" title="Permalink to this definition">¶</a></dt>
+<dd><p>Method for checking whether there are valid moves in all four diagonals</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>board</strong> – Board where the piece is located</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>list with all valid moves</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="Piece.Piece.check_perpendicular">
+<code class="descname">check_perpendicular</code><span class="sig-paren">(</span><em>board</em><span class="sig-paren">)</span><a class="headerlink" href="#Piece.Piece.check_perpendicular" title="Permalink to this definition">¶</a></dt>
+<dd><p>Method for checking whether there are valid moves in all four straight lines</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>board</strong> – Board where the piece is located</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>list with all valid moves</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="Piece.Piece.draw">
+<code class="descname">draw</code><span class="sig-paren">(</span><em>window</em><span class="sig-paren">)</span><a class="headerlink" href="#Piece.Piece.draw" title="Permalink to this definition">¶</a></dt>
+<dd><p>Draw the piece’s image onto the board</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>window</strong> – PyGame screen object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="Piece.Piece.get_FEN">
+<code class="descname">get_FEN</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Piece.Piece.get_FEN" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the piece’s representation in FEN format (Black lowercase, white uppercase)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>FEN string of the piece</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="Piece.Piece.get_color">
+<code class="descname">get_color</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Piece.Piece.get_color" title="Permalink to this definition">¶</a></dt>
+<dd><p>Getter for piece color</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>A string with “w” or “b” representing the color of the piece</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="Piece.Piece.get_coords">
+<em class="property">static </em><code class="descname">get_coords</code><span class="sig-paren">(</span><em>pos</em><span class="sig-paren">)</span><a class="headerlink" href="#Piece.Piece.get_coords" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns coordinates as (x,y) relative to window size</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>pos</strong> – Position to convert</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>X and Y parameters of the position</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="Piece.Piece.get_copy">
+<code class="descname">get_copy</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Piece.Piece.get_copy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns an identical piece</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>A Piece object with the same parameters</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="Piece.Piece.get_pos">
+<code class="descname">get_pos</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Piece.Piece.get_pos" title="Permalink to this definition">¶</a></dt>
+<dd><p>Getter for piece position</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Current position of the piece</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="Piece.Piece.is_taking">
+<code class="descname">is_taking</code><span class="sig-paren">(</span><em>board</em>, <em>move</em><span class="sig-paren">)</span><a class="headerlink" href="#Piece.Piece.is_taking" title="Permalink to this definition">¶</a></dt>
+<dd><p>Checks whether the piece is making a taking move for PGN purposes</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>board</strong> – Board where pieces are stored</p></li>
+<li><p><strong>move</strong> – Move made</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="Piece.Piece.is_valid">
+<code class="descname">is_valid</code><span class="sig-paren">(</span><em>color</em>, <em>move</em>, <em>board</em><span class="sig-paren">)</span><a class="headerlink" href="#Piece.Piece.is_valid" title="Permalink to this definition">¶</a></dt>
+<dd><p>Tests whether a specified move is or not valid</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>color</strong> – Color of the current piece</p></li>
+<li><p><strong>move</strong> – Move to be tested</p></li>
+<li><p><strong>board</strong> – Board where the piece is located</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>True if the move is valid</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="Piece.Piece.move">
+<code class="descname">move</code><span class="sig-paren">(</span><em>pos</em>, <em>board</em><span class="sig-paren">)</span><a class="headerlink" href="#Piece.Piece.move" title="Permalink to this definition">¶</a></dt>
+<dd><p>Basic move of a piece</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>pos</strong> – Position to move to</p></li>
+<li><p><strong>board</strong> – Board in which the piece is to be stored</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="Piece.Piece.set_pos">
+<code class="descname">set_pos</code><span class="sig-paren">(</span><em>pos</em><span class="sig-paren">)</span><a class="headerlink" href="#Piece.Piece.set_pos" title="Permalink to this definition">¶</a></dt>
+<dd><p>Setter for piece position</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>pos</strong> – New position for the piece</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="Piece.Piece.valid_moves">
+<code class="descname">valid_moves</code><span class="sig-paren">(</span><em>board</em><span class="sig-paren">)</span><a class="headerlink" href="#Piece.Piece.valid_moves" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a list of valid moves for the specified piece</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>board</strong> – Board where the piece is located</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>List with valid moves</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="Piece.Queen">
+<em class="property">class </em><code class="descclassname">Piece.</code><code class="descname">Queen</code><span class="sig-paren">(</span><em>pos</em>, <em>color</em><span class="sig-paren">)</span><a class="headerlink" href="#Piece.Queen" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="method">
+<dt id="Piece.Queen.get_copy">
+<code class="descname">get_copy</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Piece.Queen.get_copy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns an identical piece</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>A Piece object with the same parameters</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="Piece.Queen.valid_moves">
+<code class="descname">valid_moves</code><span class="sig-paren">(</span><em>board</em><span class="sig-paren">)</span><a class="headerlink" href="#Piece.Queen.valid_moves" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a list of valid moves for the specified piece</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>board</strong> – Board where the piece is located</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>List with valid moves</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="Piece.Rook">
+<em class="property">class </em><code class="descclassname">Piece.</code><code class="descname">Rook</code><span class="sig-paren">(</span><em>pos</em>, <em>color</em>, <em>cast=True</em><span class="sig-paren">)</span><a class="headerlink" href="#Piece.Rook" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="method">
+<dt id="Piece.Rook.can_castle">
+<code class="descname">can_castle</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Piece.Rook.can_castle" title="Permalink to this definition">¶</a></dt>
+<dd><p>Getter for castling flag</p>
+<blockquote>
+<div><dl class="field-list simple">
+<dt class="field-odd">return</dt>
+<dd class="field-odd"><p>True if can castle</p>
+</dd>
+</dl>
+</div></blockquote>
+</dd></dl>
+
+<dl class="method">
+<dt id="Piece.Rook.flag_uncastleable">
+<code class="descname">flag_uncastleable</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Piece.Rook.flag_uncastleable" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets castling flag to False</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Piece.Rook.get_copy">
+<code class="descname">get_copy</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Piece.Rook.get_copy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns an identical piece</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>A Piece object with the same parameters</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="Piece.Rook.move">
+<code class="descname">move</code><span class="sig-paren">(</span><em>pos</em>, <em>board</em><span class="sig-paren">)</span><a class="headerlink" href="#Piece.Rook.move" title="Permalink to this definition">¶</a></dt>
+<dd><p>Basic move of a piece</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>pos</strong> – Position to move to</p></li>
+<li><p><strong>board</strong> – Board in which the piece is to be stored</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="Piece.Rook.valid_moves">
+<code class="descname">valid_moves</code><span class="sig-paren">(</span><em>board</em><span class="sig-paren">)</span><a class="headerlink" href="#Piece.Rook.valid_moves" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a list of valid moves for the specified piece</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>board</strong> – Board where the piece is located</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>List with valid moves</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<hr class="docutils" />
+<ul class="simple">
+<li><p><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></p></li>
+<li><p><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Module Index</span></a></p></li>
+<li><p><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></p></li>
+</ul>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="#">PyChess</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="#">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2019, Gonzalo Luque Martín.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.0.0+/8773cf7</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/index.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
