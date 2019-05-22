@@ -2,11 +2,23 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="395d7160-d0aa-4708-9e8d-6d959455bbce" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/tests/test_addblank.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tests/test_addpiece.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tests/test_castling_checked.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tests/test_castling_checked_destination.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tests/test_castling_kingside.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tests/test_castling_queenside.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tests/test_check_1.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tests/test_check_2.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tests/test_check_3.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tests/test_check_4.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tests/test_get_kings.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tests/test_getcoords.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tests/test_passant.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/PythonChess.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/PythonChess.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Board.py" beforeDir="false" afterPath="$PROJECT_DIR$/Board.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Piece.py" beforeDir="false" afterPath="$PROJECT_DIR$/Piece.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/game.py" beforeDir="false" afterPath="$PROJECT_DIR$/game.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -16,32 +28,152 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Piece.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="399">
-              <caret line="763" column="18" lean-forward="true" selection-start-line="763" selection-start-column="18" selection-end-line="763" selection-end-column="18" />
+            <state relative-caret-position="544">
+              <caret line="310" column="70" selection-start-line="310" selection-start-column="70" selection-end-line="310" selection-end-column="70" />
+              <folding>
+                <element signature="e#1549#1755#0" />
+                <element signature="e#1793#1913#0" />
+                <element signature="e#1955#2219#0" />
+                <element signature="e#2267#2525#0" />
+                <element signature="e#2558#2810#0" />
+                <element signature="e#2854#3039#0" />
+                <element signature="e#3077#3240#0" />
+                <element signature="e#3293#3556#0" />
+                <element signature="e#3589#3726#0" />
+                <element signature="e#3773#5723#0" />
+                <element signature="e#5775#7222#0" />
+                <element signature="e#7257#7408#0" />
+                <element signature="e#7462#8005#0" />
+                <element signature="e#8039#8160#0" />
+                <element signature="e#8190#8554#0" />
+                <element signature="e#8648#8841#0" />
+                <element signature="e#8922#9241#0" />
+                <element signature="e#9916#10816#0" />
+                <element signature="e#10858#10980#0" />
+                <element signature="e#12247#12366#0" />
+                <element signature="e#12409#14180#0" />
+                <element signature="e#14229#14903#0" />
+                <element signature="e#14950#16448#0" />
+                <element signature="e#16500#17384#0" />
+                <element signature="e#17420#17537#0" />
+                <element signature="e#17580#17663#0" />
+                <element signature="e#17697#17769#0" />
+                <element signature="e#17799#18622#0" />
+                <element signature="e#18650#22372#0" />
+                <element signature="e#20140#20660#0" />
+                <element signature="e#20704#21846#0" />
+                <element signature="e#21893#22285#0" />
+                <element signature="e#22400#22867#0" />
+                <element signature="e#22894#23854#0" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/game.py">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Board.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1955">
-              <caret line="119" column="29" selection-start-line="119" selection-start-column="29" selection-end-line="119" selection-end-column="29" />
+            <state relative-caret-position="34">
+              <caret line="2" selection-start-line="2" selection-end-line="2" />
               <folding>
-                <element signature="e#0#23#0" expanded="true" />
+                <element signature="e#0#19#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Board.py">
+        <entry file="file://$PROJECT_DIR$/tests/test_castling_queenside.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2601">
-              <caret line="153" column="39" selection-start-line="153" selection-start-column="39" selection-end-line="153" selection-end-column="39" />
+            <state relative-caret-position="272">
+              <caret line="16" selection-start-line="16" selection-end-line="16" />
+              <folding>
+                <element signature="e#0#12#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/tests/test_castling_kingside.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <caret selection-end-line="17" />
+              <folding>
+                <element signature="e#0#12#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/tests/test_castling_checked.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="68">
+              <caret line="4" column="25" selection-start-line="4" selection-start-column="25" selection-end-line="4" selection-end-column="25" />
+              <folding>
+                <element signature="e#0#12#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/tests/test_castling_checked_destination.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="306">
+              <caret line="19" lean-forward="true" selection-start-line="19" selection-end-line="19" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/tests/test_check_1.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="204">
+              <caret line="12" selection-start-line="12" selection-end-line="12" />
+              <folding>
+                <element signature="e#0#12#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/tests/test_check_4.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="17">
+              <caret line="1" column="12" selection-start-line="1" selection-start-column="12" selection-end-line="1" selection-end-column="12" />
+              <folding>
+                <element signature="e#0#12#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/tests/test_check_3.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="34">
+              <caret line="2" selection-start-line="2" selection-end-line="2" />
+              <folding>
+                <element signature="e#0#12#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/tests/test_check_2.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="170">
+              <caret line="10" column="35" lean-forward="true" selection-start-line="10" selection-start-column="35" selection-end-line="10" selection-end-column="35" />
+              <folding>
+                <element signature="e#0#12#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -58,7 +190,6 @@
   <component name="FindInProjectRecents">
     <findStrings>
       <find>print(&quot;hi&quot;)</find>
-      <find>print</find>
       <find>print(</find>
       <find>x = self.</find>
       <find>x =</find>
@@ -71,6 +202,7 @@
       <find>Queen(</find>
       <find>move(</find>
       <find>pgn_result</find>
+      <find>print</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -81,17 +213,39 @@
       <list>
         <option value="$PROJECT_DIR$/HelloWorld.py" />
         <option value="$PROJECT_DIR$/piece.py" />
+        <option value="$PROJECT_DIR$/tests/test_passant.py" />
+        <option value="$PROJECT_DIR$/tests/test_castling.py" />
+        <option value="$PROJECT_DIR$/tests/test_getcoords.py" />
+        <option value="$PROJECT_DIR$/tests/test_move.py" />
+        <option value="$PROJECT_DIR$/tests/test_PGN_gen.py" />
+        <option value="$PROJECT_DIR$/tests/test_FEN.py" />
         <option value="$PROJECT_DIR$/game.py" />
-        <option value="$PROJECT_DIR$/Board.py" />
+        <option value="$PROJECT_DIR$/tests/test_addblank.py" />
+        <option value="$PROJECT_DIR$/tests/test_store_kings.py" />
+        <option value="$PROJECT_DIR$/tests/test_get_kings" />
+        <option value="$PROJECT_DIR$/tests/test_get_kings.py" />
+        <option value="$PROJECT_DIR$/tests/test_addpiece.py" />
+        <option value="$PROJECT_DIR$/tests/test_check_2.py" />
+        <option value="$PROJECT_DIR$/tests/test_check_3.py" />
+        <option value="$PROJECT_DIR$/tests/test_check.py" />
+        <option value="$PROJECT_DIR$/tests/test_check_4.py" />
+        <option value="$PROJECT_DIR$/tests/test_castling_queenside.py" />
+        <option value="$PROJECT_DIR$/tests/test_castling_kingside.py" />
+        <option value="$PROJECT_DIR$/tests/test_castling_checked.py" />
+        <option value="$PROJECT_DIR$/tests/test_castling_checked_destination.py" />
         <option value="$PROJECT_DIR$/Piece.py" />
+        <option value="$PROJECT_DIR$/Board.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-8" />
-    <option name="y" value="-8" />
+    <option name="x" value="-298" />
+    <option name="y" value="-21" />
     <option name="width" value="1936" />
     <option name="height" value="1056" />
+  </component>
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
@@ -114,8 +268,14 @@
   </component>
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/tests" />
     <property name="restartRequiresConfirmation" value="false" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\tyrio\PycharmProjects\PythonChess\tests" />
+    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -129,75 +289,89 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.game">
-    <configuration name="Board" type="PythonConfigurationType" factoryName="Python" temporary="true">
+  <component name="RunManager" selected="Python tests.pytest in tests">
+    <configuration name="pytest for test_castling_checked_destination.test_castling_checked_dest" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
       <module name="PythonChess" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/tests" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="C:\Users\tyrio\PycharmProjects\PythonChess\Board.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
+      <option name="_new_keywords" value="&quot;&quot;" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;test_castling_checked_destination.test_castling_checked_dest&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="HelloWorld" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="pytest for test_castling_checked.test_castling_kingside" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
       <module name="PythonChess" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/tests" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="C:\Users\tyrio\PycharmProjects\PythonChess\Board.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
+      <option name="_new_keywords" value="&quot;&quot;" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;test_castling_checked.test_castling_kingside&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="game" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="pytest in test_castling_checked.py" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
       <module name="PythonChess" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/tests" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/game.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
+      <option name="_new_keywords" value="&quot;&quot;" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;$PROJECT_DIR$/tests/test_castling_checked.py&quot;" />
+      <option name="_new_targetType" value="&quot;PATH&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="pytest in test_castling_kingside.py" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+      <module name="PythonChess" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/tests" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_keywords" value="&quot;&quot;" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;$PROJECT_DIR$/tests/test_castling_kingside.py&quot;" />
+      <option name="_new_targetType" value="&quot;PATH&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="pytest in tests" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+      <module name="PythonChess" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/tests" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_keywords" value="&quot;&quot;" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;$PROJECT_DIR$/tests&quot;" />
+      <option name="_new_targetType" value="&quot;PATH&quot;" />
       <method v="2" />
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.game" />
-        <item itemvalue="Python.Board" />
-        <item itemvalue="Python.HelloWorld" />
+        <item itemvalue="Python tests.pytest in tests" />
+        <item itemvalue="Python tests.pytest for test_castling_checked_destination.test_castling_checked_dest" />
+        <item itemvalue="Python tests.pytest in test_castling_checked.py" />
+        <item itemvalue="Python tests.pytest for test_castling_checked.test_castling_kingside" />
+        <item itemvalue="Python tests.pytest in test_castling_kingside.py" />
       </list>
     </recent_temporary>
   </component>
@@ -214,17 +388,49 @@
     </task>
     <servers />
   </component>
+  <component name="TestHistory">
+    <history-entry file="pytest_in_test_castling_kingside_py - 2019.05.22 at 13h 09m 56s.xml">
+      <configuration name="pytest in test_castling_kingside.py" configurationId="tests" />
+    </history-entry>
+    <history-entry file="pytest_for_test_castling_checked_test_castling_kingside - 2019.05.22 at 13h 10m 51s.xml">
+      <configuration name="pytest for test_castling_checked.test_castling_kingside" configurationId="tests" />
+    </history-entry>
+    <history-entry file="pytest_in_test_castling_checked_py - 2019.05.22 at 13h 11m 05s.xml">
+      <configuration name="pytest in test_castling_checked.py" configurationId="tests" />
+    </history-entry>
+    <history-entry file="pytest_in_test_castling_checked_py - 2019.05.22 at 13h 11m 11s.xml">
+      <configuration name="pytest in test_castling_checked.py" configurationId="tests" />
+    </history-entry>
+    <history-entry file="pytest_in_tests - 2019.05.22 at 13h 12m 25s.xml">
+      <configuration name="pytest in tests" configurationId="tests" />
+    </history-entry>
+    <history-entry file="pytest_in_tests - 2019.05.22 at 13h 15m 33s.xml">
+      <configuration name="pytest in tests" configurationId="tests" />
+    </history-entry>
+    <history-entry file="pytest_in_tests - 2019.05.22 at 13h 15m 49s.xml">
+      <configuration name="pytest in tests" configurationId="tests" />
+    </history-entry>
+    <history-entry file="pytest_in_tests - 2019.05.22 at 13h 16m 00s.xml">
+      <configuration name="pytest in tests" configurationId="tests" />
+    </history-entry>
+    <history-entry file="pytest_for_test_castling_checked_destination_test_castling_checked_dest - 2019.05.22 at 13h 16m 58s.xml">
+      <configuration name="pytest for test_castling_checked_destination.test_castling_checked_dest" configurationId="tests" />
+    </history-entry>
+    <history-entry file="pytest_in_tests - 2019.05.22 at 13h 17m 04s.xml">
+      <configuration name="pytest in tests" configurationId="tests" />
+    </history-entry>
+  </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.17913593" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.20073763" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32936078" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.30985916" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.3997833" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.35102925" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.40303358" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -272,27 +478,219 @@
     <entry file="file://$PROJECT_DIR$/img/b_bishop.png">
       <provider selected="true" editor-type-id="images" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/Piece.py">
+    <entry file="file://$PROJECT_DIR$/tests/test_passant.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="399">
-          <caret line="763" column="18" lean-forward="true" selection-start-line="763" selection-start-column="18" selection-end-line="763" selection-end-column="18" />
+        <state relative-caret-position="419">
+          <caret line="36" column="46" lean-forward="true" selection-start-line="22" selection-start-column="4" selection-end-line="36" selection-end-column="46" />
+          <folding>
+            <element signature="e#0#12#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/test_move.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/test_PGN_gen.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
+          <folding>
+            <element signature="e#0#11#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/test_getcoords.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="14" column="22" selection-start-line="14" selection-start-column="22" selection-end-line="14" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/test_FEN.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" lean-forward="true" selection-start-line="11" selection-end-line="11" />
+          <folding>
+            <element signature="e#0#11#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/game.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1955">
-          <caret line="119" column="29" selection-start-line="119" selection-start-column="29" selection-end-line="119" selection-end-column="29" />
+        <state relative-caret-position="901">
+          <caret line="255" column="12" selection-start-line="255" selection-start-column="12" selection-end-line="255" selection-end-column="12" />
           <folding>
             <element signature="e#0#23#0" expanded="true" />
+            <element signature="e#1642#2018#0" />
+            <element signature="e#2045#2481#0" />
+            <element signature="e#2509#2775#0" />
+            <element signature="e#2809#5021#0" />
+            <element signature="e#5057#6522#0" />
+            <element signature="e#6547#7096#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/test_get_kings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="20" selection-start-line="8" selection-start-column="20" selection-end-line="8" selection-end-column="20" />
+          <folding>
+            <element signature="e#1#13#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/test_addblank.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" lean-forward="true" selection-start-line="9" selection-end-line="9" />
+          <folding>
+            <element signature="e#0#12#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/test_addpiece.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" selection-start-line="10" selection-end-line="10" />
+          <folding>
+            <element signature="e#0#12#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/test_check_2.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" column="35" lean-forward="true" selection-start-line="10" selection-start-column="35" selection-end-line="10" selection-end-column="35" />
+          <folding>
+            <element signature="e#0#12#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/test_check_3.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" selection-start-line="2" selection-end-line="2" />
+          <folding>
+            <element signature="e#0#12#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/test_check_4.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="1" column="12" selection-start-line="1" selection-start-column="12" selection-end-line="1" selection-end-column="12" />
+          <folding>
+            <element signature="e#0#12#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/test_check_1.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="12" selection-start-line="12" selection-end-line="12" />
+          <folding>
+            <element signature="e#0#12#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/test_castling_queenside.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="16" selection-start-line="16" selection-end-line="16" />
+          <folding>
+            <element signature="e#0#12#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/test_castling_kingside.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret selection-end-line="17" />
+          <folding>
+            <element signature="e#0#12#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/test_castling_checked.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="25" selection-start-line="4" selection-start-column="25" selection-end-line="4" selection-end-column="25" />
+          <folding>
+            <element signature="e#0#12#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/test_castling_checked_destination.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="19" lean-forward="true" selection-start-line="19" selection-end-line="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Piece.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="544">
+          <caret line="310" column="70" selection-start-line="310" selection-start-column="70" selection-end-line="310" selection-end-column="70" />
+          <folding>
+            <element signature="e#1549#1755#0" />
+            <element signature="e#1793#1913#0" />
+            <element signature="e#1955#2219#0" />
+            <element signature="e#2267#2525#0" />
+            <element signature="e#2558#2810#0" />
+            <element signature="e#2854#3039#0" />
+            <element signature="e#3077#3240#0" />
+            <element signature="e#3293#3556#0" />
+            <element signature="e#3589#3726#0" />
+            <element signature="e#3773#5723#0" />
+            <element signature="e#5775#7222#0" />
+            <element signature="e#7257#7408#0" />
+            <element signature="e#7462#8005#0" />
+            <element signature="e#8039#8160#0" />
+            <element signature="e#8190#8554#0" />
+            <element signature="e#8648#8841#0" />
+            <element signature="e#8922#9241#0" />
+            <element signature="e#9916#10816#0" />
+            <element signature="e#10858#10980#0" />
+            <element signature="e#12247#12366#0" />
+            <element signature="e#12409#14180#0" />
+            <element signature="e#14229#14903#0" />
+            <element signature="e#14950#16448#0" />
+            <element signature="e#16500#17384#0" />
+            <element signature="e#17420#17537#0" />
+            <element signature="e#17580#17663#0" />
+            <element signature="e#17697#17769#0" />
+            <element signature="e#17799#18622#0" />
+            <element signature="e#18650#22372#0" />
+            <element signature="e#20140#20660#0" />
+            <element signature="e#20704#21846#0" />
+            <element signature="e#21893#22285#0" />
+            <element signature="e#22400#22867#0" />
+            <element signature="e#22894#23854#0" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Board.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2601">
-          <caret line="153" column="39" selection-start-line="153" selection-start-column="39" selection-end-line="153" selection-end-column="39" />
+        <state relative-caret-position="34">
+          <caret line="2" selection-start-line="2" selection-end-line="2" />
+          <folding>
+            <element signature="e#0#19#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

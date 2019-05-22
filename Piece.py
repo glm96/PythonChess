@@ -309,7 +309,6 @@ class King (Piece):
         # Check if move is castling
         if abs(pos[0]-x) == 2:
             if not self.castle(pos, board):  # Castling didn't go well
-                print("Error on castling logic")
                 return False
             return True
         else:
@@ -375,20 +374,21 @@ class King (Piece):
 
         # Castling
         if self.can_castle():
-            for tx in range(x-1, -1, -1):
-                square = board.get_square([tx, y])
-                if square != 0:
-                    if isinstance(square, Rook) and square.can_castle():  # Check whether it's the final square
-                        moves.append([x-2, y])
-                    else:
-                        break
-            for tx in range(x+1, 8, 1):
-                square = board.get_square([tx, y])
-                if square != 0:
-                    if isinstance(square, Rook) and square.can_castle():
-                        moves.append([x+2, y])
-                    else:
-                        break
+            if not self.is_checked(board):
+                for tx in range(x-1, -1, -1):
+                    square = board.get_square([tx, y])
+                    if square != 0:
+                        if isinstance(square, Rook) and square.can_castle():  # Check whether it's the final square
+                            moves.append([x-2, y])
+                        else:
+                            break
+                for tx in range(x+1, 8, 1):
+                    square = board.get_square([tx, y])
+                    if square != 0:
+                        if isinstance(square, Rook) and square.can_castle():
+                            moves.append([x+2, y])
+                        else:
+                            break
 
         for move in moves:
             if self.is_valid(self.color, move, board):

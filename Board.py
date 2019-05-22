@@ -156,6 +156,14 @@ class Board:
         if pos[0] in range(8) and pos[1] in range(8):
             self.board[pos[0]][pos[1]] = 0
 
+    def empty_board(self):
+        """
+        Fills the board with blanks
+        """
+        for x in range(8):
+            for y in range(8):
+                self.board[x][y] = 0
+
     def get_board_copy(self):
         """
         Returns an exact copy of the board with different instances of its pieces for testing moves
@@ -191,9 +199,9 @@ class Board:
         color = square.get_color()
         # Check if its own king got checked because of the move
         if color == "w":
-            king = self.get_kings()[0]
+            king = testboard.get_kings()[0]
         else:
-            king = self.get_kings()[1]
+            king = testboard.get_kings()[1]
         if king.is_checked(testboard):
             return False
         return True
